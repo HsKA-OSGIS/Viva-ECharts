@@ -1,15 +1,4 @@
 /*SIDEBAR FUNCTIONS*/
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
-	document.getElementById("mySidenav").style.width = "250px";
-	document.getElementById("div-home2").style.marginRight = "250px";
-}
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
-	document.getElementById("mySidenav").style.width = "0";
-	document.getElementById("div-home2").style.marginRight = "0";
-}
-
 var sidebarState = 0 // close
 function open_closeNav() {
   if(sidebarState === 0){
@@ -70,6 +59,16 @@ function linkMenuEvents(){
 	document.getElementById("menu-about").addEventListener("click", changeActive);
 	document.getElementById("menu-help").addEventListener("click", changeActive1);
 	document.getElementById("menu-home").addEventListener("click", changeActive2);
+	document.querySelectorAll('ul.list input').forEach(item => {
+		item.addEventListener('click', event => {
+		  var label = item.parentNode;
+		  if (item.checked) {
+			label.style.fontWeight = "bold";
+		  } else {
+			label.style.fontWeight = "normal"
+		  }
+		})
+	  })
 }
 
 function mainInit(){
