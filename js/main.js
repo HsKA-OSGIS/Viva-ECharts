@@ -1,19 +1,29 @@
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
 	document.getElementById("mySidenav").style.width = "250px";
-	document.getElementById("main").style.marginRight = "250px";
+	document.getElementById("div-home2").style.marginRight = "250px";
   }
   
   /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
   function closeNav() {
 	document.getElementById("mySidenav").style.width = "0";
-	document.getElementById("main").style.marginRight = "0";
+	document.getElementById("div-home2").style.marginRight = "0";
   }
-
+function showDivHome(){
+    libs_general_hideAllDivsInDivExceptOne("div-main", "div-home") 
+}
+function showDivAbout(){
+    libs_general_hideAllDivsInDivExceptOne("div-main", "div-about") 
+}
+function linkMenuEvents(){
+	document.getElementById("menu-about").addEventListener("click", showDivAbout);
+}
 
 function mainInit(){
 
 	//Call your functions here
+	showDivHome();
+	linkMenuEvents();
 	mapMain();
 
 	//Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
