@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <script src="echarts.js"></script> <!--Includes an ECharts file-->
+  </head>
+  <body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+
+    <script type="text/javascript"> // example bar chart
+      // Initialize the echarts instance based on the prepared dom
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // Specify the configuration items and data for the chart
+      var option = {
+        title: {
+          text: 'Bar Chart 1',
+		  subtext: 'with more information',
+		  sublink: 'https://echarts.apache.org/en/index.html' // link for subtitle
+        },
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+			  type: 'cross'
+			}
+		},
+        //tooltip: {},
+        legend: {data: ['sales']},
+        xAxis: {
+          data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
+        },
+        yAxis: {},
+        series: [
+          {
+            name: 'sales',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+          }
+        ],
+		color: [ // If 1 color, whole chart has this color
+			'#8AD1B4' // cyan
+			//'#c23531', // red
+			//'#2f4554', // black
+			//'#61a0a8', // dark cyan
+			//'#91c7ae', // light pastel green
+			//'#749f83', // dark green
+			//'#6e7074', // grey
+			//'#c4ccd3', // light grey
+			//'#546570' // dark grey
+
+		]
+      };
+
+      // Display the chart using the configuration items and data just specified.
+      myChart.setOption(option);
+    </script>
+
+	<div id="second" style="width: 600px; height:400px;"></div>
+	<script type="text/javascript"> // example bar chart2
+      // Initialize the echarts instance based on the prepared dom
+      var myChart2 = echarts.init(document.getElementById('second'));
+
+      // Specify the configuration items and data for the chart
+      var option = {
+        title: {
+          text: 'Bar Chart 2'
+        },
+        tooltip: {},
+        legend: {data: ['sales']},
+        xAxis: {
+          data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
+        },
+        yAxis: {},
+        series: [
+          {
+            name: 'sales',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+          }
+        ]
+      };
+
+      // Display the chart using the configuration items and data just specified.
+      myChart2.setOption(option);
+	</script>
+
+	<div id="third" style="width: 600px; height:400px;"></div>
+	<script type="text/javascript"> // example pie chart
+      // Initialize the echarts instance based on the prepared dom
+      var myChart3 = echarts.init(document.getElementById('third'));
+
+      // Specify the configuration items and data for the chart
+      var option = {
+	  title: {
+          text: 'Pie Chart'
+        },
+          series: [
+		{
+		  type: 'pie',
+		  data: [
+			{
+			  value: 335,
+			  name: 'Direct Visit'
+			},
+			{
+			  value: 234,
+			  name: 'Union Ad'
+			},
+			{
+			  value: 1548,
+			  name: 'Search Engine'
+			}
+		  ]
+		}
+	  ]
+		//,color: ['#c23531']
+      };
+
+      // Display the chart using the configuration items and data just specified.
+      myChart3.setOption(option);
+	  </script>
+
+	<div id="fourth" style="width: 600px; height:400px;"></div>
+	<script type="text/javascript"> // example line chart
+      // Initialize the echarts instance based on the prepared dom
+      var myChart4 = echarts.init(document.getElementById('fourth'));
+
+      // Specify the configuration items and data for the chart
+      var option = {
+	  title: {
+          text: 'Line Chart'
+        },
+          xAxis: {
+			data: ['A', 'B', 'C', 'D', 'E']
+		  },
+		  yAxis: {},
+		  series: [
+			{
+			  data: [10, 22, 28, 43, 49],
+			  type: 'line',
+			  stack: 'x'
+			},
+			{
+			  data: [5, 4, 3, 5, 10],
+			  type: 'line',
+			  stack: 'x'
+			}
+		  ] // end series
+		//,color: ['#c23531']
+      };
+
+      // Display the chart using the configuration items and data just specified.
+      myChart4.setOption(option);
+	  </script>
+
+	<div id="fifth" style="width: 600px; height:400px;"></div>
+	<script type="text/javascript"> // example scatter chart
+      // Initialize the echarts instance based on the prepared dom
+      var myChart5 = echarts.init(document.getElementById('fifth'));
+
+      // Specify the configuration items and data for the chart
+      var option = {
+	  title: {
+          text: 'Scatter Chart'
+        },
+		xAxis: {
+			data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+		  },
+		  yAxis: {},
+		  series: [
+			{
+			  type: 'scatter',
+			  data: [220, 182, 191, 234, 290, 330, 310]			  
+			}
+		  ]
+		//,color: ['#c23531']
+      };
+
+      // Display the chart using the configuration items and data just specified.
+      myChart5.setOption(option);
+	  </script>
+
+  </body>
+</html>
