@@ -13,6 +13,21 @@ function mapMain(){
         target: 'map'
     });
 
+    // Test to show satellite image
+    const map2 = new Map({
+      layers: [
+        new TileLayer({
+          preload: Infinity,
+          source: new BingMaps({
+            key: 'AsEwJhOHurNUkoajF7WZECsheUd7OGCN7gCw-7g-djpZRwoAKswzpUuhSGJPADm2',
+            imagerySet: 'Aerial',
+          }),
+        }),
+      ],
+      target: 'map1',
+      view: view,
+    });
+
     vectorSource = new ol.source.Vector({
         format: new ol.format.GeoJSON()
     });
