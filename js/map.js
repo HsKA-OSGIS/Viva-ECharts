@@ -3,7 +3,7 @@ let rasterSource;
 
 function mapMain(){
     map = new ol.Map({
-        layers: [new ol.layer.Tile({
+        layers: [OSM = new ol.layer.Tile({
             source: new ol.source.OSM()
           })],
         view: new ol.View({
@@ -37,7 +37,7 @@ function mapMain(){
 function map2(){
     map2 = new ol.Map({
       layers: [
-        new ol.layer.Tile({
+        Satellite = new ol.layer.Tile({
           preload: Infinity,
           source: new ol.source.BingMaps({
             key: 'AsEwJhOHurNUkoajF7WZECsheUd7OGCN7gCw-7g-djpZRwoAKswzpUuhSGJPADm2',
@@ -51,5 +51,6 @@ function map2(){
         zoom: 6.1
       })
     });
+    
 }
 

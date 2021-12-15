@@ -47,13 +47,22 @@ function mainInit(){
       }
     }
 
-    document.getElementById("osmBtn").onclick = function() {changeBasemap()};
-    document.getElementById("satelliteBtn").onclick = function() {changeBasemap()};
+    document.getElementById("osmBtn").onclick = function() {changeBasemapToOSM()};
+    document.getElementById("satelliteBtn").onclick = function() {changeBasemapToSatellite()};
+    //document.getElementById("osmBtn").style.color = "red"; // Change button color
 
-    function changeBasemap(){
-    
+    //map.addLayer(Satellite);
+    map.removeLayer(Satellite);
+
+    function changeBasemapToSatellite(){
+    map.removeLayer(OSM);
+    map.addLayer(Satellite);
     }
 
+    function changeBasemapToOSM(){
+    map.removeLayer(Satellite);
+    map.addLayer(OSM);
+    }
 
 }
 

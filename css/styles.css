@@ -28,8 +28,12 @@
   cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn:hover {
   background-color: #3455CC;
+}
+
+.dropbtn:focus {
+  background-color: #3455CC
 }
 
 .dropdown {
