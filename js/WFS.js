@@ -1,13 +1,12 @@
-function getFeatures(url){
+function getFeatures(url, callback){
 
     $.ajax({
         url: url, 
         success: function(response) {
-                console.log(JSON.stringify(response.features));
-                return response.features;
+                callback(JSON.stringify(response.features));
             }, 
         error: function(error) {
-                alert(error.status);
+                console.log(JSON.stringify(error.status));
             },
     });
 }

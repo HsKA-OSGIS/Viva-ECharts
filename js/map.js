@@ -4,7 +4,7 @@ function mapMain(){
             source: new ol.source.OSM()
           })],
         view: new ol.View({
-        center: ol.proj.fromLonLat([-3.8, 39.5]),
+        center: ol.proj.fromLonLat([9, 51]),
         zoom: 6.1
         }),
         target: 'map'

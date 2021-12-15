@@ -4,18 +4,15 @@ function mainInit(){
 	//Call your functions here
 	mapMain();
 
-	
-	url = new URL("https://www.imis.bfs.de/ogc/opendata/ows")
-	url.searchParams.append("service","WFS")
-	url.searchParams.append("version","1.0.0")
-	url.searchParams.append("request","GetFeature")
-	url.searchParams.append("typeName","opendata:nuklide_pilze")
-	url.searchParams.append("CQL_FILTER","(sample_begin DURING 2020-12-08T13:00:00.000Z/2021-21-08T13:00:00.000Z) AND (nuclide = 'Cs-137')")
-	url.searchParams.append("VIEWPARAMS","order:sample_begin")
-	url.searchParams.append("outputFormat","application/json")
+	//Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
+	url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
+	//Example for mushrooms and Cs-137
+	getFeatures(url, function(features){console.log(features)});
 
-	getFeatures(url.href);
-
+	//Example for meat and K-40 and a different period of time
+	url = URLBuilder("nuklide_fleisch", "2021-11-24T11:00:00.000Z","2021-12-14T11:00:00.000Z","K-40")
+	console.log(url)
+	getFeatures(url, function(features){console.log(features)});
 }
 
 window.onload = function() {
