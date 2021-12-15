@@ -1,4 +1,5 @@
 let vectorSource;
+let rasterSource;
 
 function mapMain(){
     map = new ol.Map({
@@ -16,10 +17,18 @@ function mapMain(){
         format: new ol.format.GeoJSON()
     });
 
+    rasterSource = new ol.source.ImageWMS({
+    })
+
     const vector = new ol.layer.Vector({
         source: vectorSource
     });
 
+    const raster = new ol.layer.Image({
+        source: rasterSource
+    });
+
     map.addLayer(vector);
+    map.addLayer(raster);
 
 }
