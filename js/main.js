@@ -1,8 +1,8 @@
-
 function mainInit(){
 
 	//Call your functions here
 	mapMain();
+    mapTest();
 
 	//Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
 	url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
