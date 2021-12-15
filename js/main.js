@@ -19,8 +19,11 @@ function mainInit(){
 	vectorSource.setUrl(url);
 
 	//Adding a layer to the map from WMS
-	url ="https://www.imis.bfs.de/ogc/opendata/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&LAYERS=opendata:nuklide_fleisch&viewparams=order:sample_begin;&cql_filter=nuclide = 'Cs-137'&TIME=2020-12-14T10:00:00.000Z/2021-12-14T10:00:00.000Z&SRS=EPSG:3857&STYLES=&WIDTH=1326&HEIGHT=477&BBOX=-386465.61500985106,6123523.20998204,2856910.369186748,7290258.00972697"
-	rasterSource.setUrl(url);
+	layer = 'opendata:nuklide_fleisch';
+	service = 'WMS'
+	time = '2020-12-14T10:00:00.000Z/2021-12-14T10:00:00.000Z'
+	cql_filter = "nuclide = 'Cs-137'"
+	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
 	
 	
 
