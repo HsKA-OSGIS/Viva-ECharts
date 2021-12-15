@@ -1,3 +1,5 @@
+let vectorSource;
+
 function mapMain(){
     map = new ol.Map({
         layers: [new ol.layer.Tile({
@@ -9,4 +11,15 @@ function mapMain(){
         }),
         target: 'map'
     });
+
+    vectorSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON()
+    });
+
+    const vector = new ol.layer.Vector({
+        source: vectorSource
+    });
+
+    map.addLayer(vector);
+
 }
