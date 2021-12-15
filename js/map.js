@@ -34,7 +34,7 @@ function mapMain(){
 
 }
 
-function mapTest(){
+function map2(){
     map2 = new ol.Map({
       layers: [
         new ol.layer.Tile({
@@ -52,3 +52,4 @@ function mapTest(){
       })
     });
 }
+

@@ -2,7 +2,7 @@ function mainInit(){
 
 	//Call your functions here
 	mapMain();
-    mapTest();
+    map2();
 
 	//Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
 	url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
@@ -25,7 +25,34 @@ function mainInit(){
 	cql_filter = "nuclide = 'Cs-137'"
 	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
 	
-	
+    // Following lines are for drop-down menu to change the basemap
+	// Get the button, and when the user clicks on it, execute myFunction
+    document.getElementById("myBtn").onclick = function() {myFunction()};
+
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // function to close drop-down-menu when user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    document.getElementById("osmBtn").onclick = function() {changeBasemap()};
+    document.getElementById("satelliteBtn").onclick = function() {changeBasemap()};
+
+    function changeBasemap(){
+    
+    }
 
 
 }
