@@ -34,6 +34,18 @@
   transition: 0.3s;
 }
 
+/*Checkbox types inside the sidebar*/
+[type="checkbox"]{
+  width: 0;
+  height: 0;
+}
+
+ul.list label {
+  font-weight: 500;
+  font-size: 30px;
+  font-weight: normal;
+}
+
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
