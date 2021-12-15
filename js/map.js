@@ -18,6 +18,7 @@ function mapMain(){
     });
 
     rasterSource = new ol.source.ImageWMS({
+        url:"https://www.imis.bfs.de/ogc/opendata/wms"
     })
 
     const vector = new ol.layer.Vector({
