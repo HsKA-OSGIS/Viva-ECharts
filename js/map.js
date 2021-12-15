@@ -36,13 +36,19 @@ function mapMain(){
 
 function mapTest(){
     map2 = new ol.Map({
-        layers: [new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })],
-        view: new ol.View({
+      layers: [
+        new ol.layer.Tile({
+          preload: Infinity,
+          source: new ol.source.BingMaps({
+            key: 'AsEwJhOHurNUkoajF7WZECsheUd7OGCN7gCw-7g-djpZRwoAKswzpUuhSGJPADm2',
+            imagerySet: 'Aerial',
+          }),
+        }),
+      ],
+      target: 'map2',
+      view: new ol.View({
         center: ol.proj.fromLonLat([9, 51]),
         zoom: 6.1
-        }),
-        target: 'map2'
+      })
     });
 }
