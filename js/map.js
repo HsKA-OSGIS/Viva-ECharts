@@ -1,5 +1,6 @@
 let vectorSource;
 let rasterSource;
+//import BingMaps from 'ol/source/BingMaps';
 
 function mapMain(){
     map = new ol.Map({
@@ -24,7 +25,7 @@ function mapMain(){
           }),
         }),
       ],
-      target: 'map1',
+      target: 'map2',
       view: view,
     });
 
