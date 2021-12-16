@@ -100,13 +100,6 @@ function mainInit(){
 	cql_filter = "nuclide = 'Cs-137'"
 	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
 	
-    // Following lines are for drop-down menu to change the basemap
-	// Get the button, and when the user clicks on it, execute myFunction
-    document.getElementById("myBtn").onclick = function() {myFunction()};
-
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
 
     // function to close drop-down-menu when user clicks outside of it
     window.onclick = function(event) {
@@ -120,25 +113,6 @@ function mainInit(){
           }
         }
       }
-    }
-
-    // Code to work with buttons osmBtn and satelliteBtn
-    document.getElementById("osmBtn").onclick = function() {changeBasemapToOSM()};
-    document.getElementById("satelliteBtn").onclick = function() {changeBasemapToSatellite()};
-    //document.getElementById("osmBtn").style.color = "red"; // Change button color
-
-    function changeBasemapToSatellite(){
-    map.removeLayer(OSM);
-    map.addLayer(Satellite);
-    // Tries to put vector and raster layer on top of Satellite layer
-    //map.setLayerIndex(vector, 2);
-    //ol.source.vector.vectorLayer.setZIndex(zIndex);
-    //map.getLayers().setAt(99, Satellite)
-    }
-
-    function changeBasemapToOSM(){
-    map.removeLayer(Satellite);
-    map.addLayer(OSM);
     }
 
 }
