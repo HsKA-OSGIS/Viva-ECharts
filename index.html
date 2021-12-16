@@ -31,30 +31,128 @@
     </head>
 
     <body>
-        <div id="div_title">
-            <h4>Radiological data</h4>
+    <div class="header">
+        <a href="#default" class="logo">Viva Echarts</a>
+        <div class="header-right">
+          <a class="header active" href="#home" id="menu-home">Home</a>
+          <a class="header" href="#contact" id="menu-about">About us</a>
+          <a class="header"href="#about" id="menu-help">Help</a>
         </div>
-        <div id="div_body" class="container-fluid">
-            <div class="row">
-                <div id="div_tools" class="col-1 text-center">
-                    <p>Tool nav bar</p>
-                </div>
-                <div id="div_map" class="col-8">
-					<p>Visual representation of WFS</p>
-					<div id="map"></div> 
-					<div class="dropdown"> <!--Drop-down-menu for basemap change-->
-					  <button id="myBtn" class="dropbtn">Change basemap</button>
-					  <div id="myDropdown" class="dropdown-content">
-						<button id="osmBtn" class="dropdown-item" type="button">OpenStreetMap</button>
-						<button id="satelliteBtn" class="dropdown-item" type="button">Satellite Image</button>
-					  </div>
-					</div>
-                </div>
-                <div id="div_charts" class="col-3">
-                    <p>This is the chart section</p>
+    </div>
+    <div id="div-main" class="container-fluid">
+        <div id="div-home">
+            <div id="mySidenav" class="sidenav"><!-- Sidebar -->
+                <ul class="list">
+                    <label class="selectit">
+                    <input type="checkbox"/>
+                    Bar chart
+                    </label>
+                    <br>
+                    <br>
+                    <label class="selectit">
+                    <input type="checkbox"/>
+                    Pie chart 
+                    </label>
+                    <br>
+                    <br>
+                    <label class="selectit">
+                    <input type="checkbox"/>
+                    Sclatter plot 
+                    </label>
+                    <br>
+                    <br>
+                    <label class="selectit">
+                    <input type="checkbox"/>
+                    X chart
+                    </label>
+                    <br>
+                </ul>
+            </div>
+            <!-- Add all page content inside this div if you want the side nav to push page 
+            content to the right (not used if you only want the sidenav to sit on top of the page -->
+            <!--<span onclick="openNav()">>>></span><--- Element in the main menu-->
+            <div id="div-home2">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <br>
+                        <div id="div_map">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <br>
+                        <button id=menu-chart>Charts</button>
+                    </div>
                 </div>
             </div>
         </div>
-        
+        <div id="div-help">
+            <h4>Prueba Help</h4>
+        </div>
+        <div id="div-about">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img src="img\manu_foto.PNG" alt="Avatar" style="width:300px;height:300px;">
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>Javi</h1>
+                    <p>Desarollador web</p>
+                    <p>Hola Hola gominola</p>
+                  </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="img\manu_foto.PNG" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>Manu</h1>
+                      <p>Desarollador web</p>
+                      <p>Hola Hola gominola</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm-2"> </div> 
+			<div class="col-sm-4">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img src="img\manu_foto.PNG" alt="Avatar" style="width:300px;height:300px;">
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>Ana</h1>
+                    <p>Desarolladora web</p>
+                    <p>Hola Hola gominola</p>
+                  </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="img\manu_foto.PNG" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>Jenny</h1>
+                      <p>Desarolladora web</p>
+                      <p>Hola Hola gominola</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="img\manu_foto.PNG" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>Kevin</h1>
+                      <p>Desarollador web</p>
+                      <p>Hola Hola gominola</p>
+                    </div>
+                  </div>
+              </div>
+        </div>
+    </div>   
     </body>
 </html>
