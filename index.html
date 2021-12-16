@@ -44,51 +44,122 @@
             <div id="mySidenav" class="sidenav"><!-- Sidebar -->
                 <ul class="list">
                     <label class="selectit">
-                    <input type="checkbox"/>
+                    <input type="checkbox" id="barchart"/>
                     Bar chart
                     </label>
                     <br>
                     <br>
                     <label class="selectit">
-                    <input type="checkbox"/>
+                    <input type="checkbox" id="piechart"/>
                     Pie chart 
                     </label>
                     <br>
                     <br>
                     <label class="selectit">
-                    <input type="checkbox"/>
+                    <input type="checkbox" id="sclatterplot"/>
                     Sclatter plot 
                     </label>
                     <br>
                     <br>
                     <label class="selectit">
-                    <input type="checkbox"/>
+                    <input type="checkbox" id="xchart"/>
                     X chart
                     </label>
                     <br>
                 </ul>
             </div>
-            <!-- Add all page content inside this div if you want the side nav to push page 
-            content to the right (not used if you only want the sidenav to sit on top of the page -->
-            <!--<span onclick="openNav()">>>></span><--- Element in the main menu-->
-            <div id="div-home2">
-                <div class="row">
-                    <div class="col-sm-11">
+            <div id="div-home2"><!--Content in this div is pushed by the sidebar-->
+                <div class="row"><!--Divided in map and sidebar button-->
+                    <div id="div-mapchart" class="col-sm-11"><!--divparent: changes depending on charts-->
                         <br>
-                        <div id="div_map">
-                            <div id="map"></div>
+                        <div id="div-chart0"><!--Divchild when theres 0chart-->   
+                            <div id="div-map">
+                                <div id="map"></div>
+                            </div>
+                        </div>    
+                        <div id="div-chart1"><!--Divchild when theres 1chart-->
+                            <div class="row">
+                                <div id="div-map" class="column">
+                                    <div id="map"></div>
+                                </div>
+                                <div class="column">
+                                    there is one chart
+                                </div>
+                            </div>    
                         </div>
-                    </div>
+                        <div id="div-chart2"><!--Divchild when there are 2charts-->
+                            <div class="row">
+                                <div id="div-map" class="column">
+                                    <div id="map"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <div class="column">
+                                            chart12
+                                        </div>
+                                        <div class="column">
+                                            chart22
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div id="div-chart3"><!--Divchild when there are 3charts-->
+                            <div class="row">
+                                <div id="div-map" class="column">
+                                    <div id="map"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <div class="column">
+                                            chart13
+                                        </div>
+                                        <div class="column">
+                                            chart23
+                                        </div>
+                                    </div>
+                                    <br>
+                                    chart33
+                                </div>
+                            </div>
+                        </div>   
+                        <div id="div-chart4"><!--Divchild when there are 4charts-->
+                            <div class="row">
+                                <div id="div-map" class="column">
+                                    <div id="map"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <div class="column">
+                                            chart14
+                                        </div>
+                                        <div class="column">
+                                            chart24
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="column">
+                                            chart34
+                                        </div>
+                                        <div class="column">
+                                            chart44
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--div-chart4-->
+                    </div><!--Divparent--><!--Divided in map and sidebar button-->    
                     <div class="col-sm-1">
                         <br>
                         <button id=menu-chart>Charts</button>
                     </div>
-                </div>
-            </div>
+                </div><!--Content in this div is pushed by the sidebar-->
+            </div><!--div-home2-->
         </div>
         <div id="div-help">
             <h4>Prueba Help</h4>
-        </div>
+        </div><!--div-help-->
         <div id="div-about">
             <div class="flip-card">
                 <div class="flip-card-inner">
@@ -152,7 +223,7 @@
                     </div>
                   </div>
               </div>
-        </div>
-    </div>   
+        </div><!--div-about-->
+    </div><!--div-main--> 
     </body>
 </html>
