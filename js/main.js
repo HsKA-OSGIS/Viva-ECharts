@@ -1,20 +1,33 @@
 /*SIDEBAR FUNCTIONS*/
+/*VARIABLES*/
+var cb1 = document.getElementById("barchart");
+var cb2 = document.getElementById("piechart");
+var cb3 = document.getElementById("sclatterplot");
+var cb4 = document.getElementById("xchart");
+
 var ncb1=0
 var ncb2=0
 var ncb3=0
 var ncb4=0
 var nc=0
+
 function charts(){
-	if (cb1.checked){ ncb1=1 }
-	if (cb2.checked){ ncb2=1 }
-	if (cb3.checked){ ncb3=1 }
-	if (cb4.checked){ ncb4=1 }
+	console.log("en charts")
+	if (document.getElementById("barchart").checked==true){ ncb1=1 }
+	if (document.getElementById("piechart").checked==true){ ncb2=1 }
+	if (document.getElementById("sclatterplot").checked==true){ ncb3=1 }
+	if (document.getElementById("xchart").checked==true){ ncb4=1 }
 	nc=ncb1+ncb2+ncb3+ncb4
-	if (nc=0){ libs_general_hideAllDivsInDivExceptOne("div-chartn", "div-chart0"); }
-	if (nc=1){ libs_general_hideAllDivsInDivExceptOne("div-chartn", "div-chart1"); }
-	if (nc=2){ libs_general_hideAllDivsInDivExceptOne("div-chartn", "div-chart2"); }
-	if (nc=3){ libs_general_hideAllDivsInDivExceptOne("div-chartn", "div-chart3"); }
-	if (nc=4){ libs_general_hideAllDivsInDivExceptOne("div-chartn", "div-chart4"); }
+	console.log(ncb1,ncb2,ncb3,ncb4,nc)
+	if (nc==0){ 
+		console.log("chart0");
+		libs_general_hideAllDivsInDivExceptOne("div-mapchart", "div-chart0"); }
+	if (nc==1){ console.log("chart1");
+		libs_general_hideAllDivsInDivExceptOne("div-mapchart", "div-chart1"); }
+	if (nc==2){ console.log("chart2");
+		libs_general_hideAllDivsInDivExceptOne("div-mapchart", "div-chart2"); }
+	if (nc==3){ libs_general_hideAllDivsInDivExceptOne("div-mapchart", "div-chart3"); }
+	if (nc==4){ libs_general_hideAllDivsInDivExceptOne("div-mapchart", "div-chart4"); }
 }
 
 var sidebarState = 0 // close
@@ -29,18 +42,21 @@ function open_closeNav() {
   else {
 	sidebarState = 0;
 	/*Checkbox functions*/
+	console.log("cerrando")
 	var cb1 = document.getElementById("barchart");
 	var cb2 = document.getElementById("piechart");
 	var cb3 = document.getElementById("sclatterplot");
 	var cb4 = document.getElementById("xchart");
-	if (cb1.checked || cb2.checked || cb3.checked || cb4.checked){charts}
+	if (cb1.checked==true || cb2.checked==true || cb3.checked==true || cb4.checked==true){
+		console.log("mirando")
+		charts()}
 	
     document.getElementById("mySidenav").style.width = "0";
 	document.getElementById("div-home2").style.marginRight = "0";
     //document.getElementById("main").style.marginLeft = "0";
     //document.body.style.backgroundColor = "white";
   }
-  console.log(sidebarState);
+  //console.log(sidebarState);
 } 
 
 
