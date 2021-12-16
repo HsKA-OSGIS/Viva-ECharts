@@ -47,16 +47,18 @@ function mainInit(){
       }
     }
 
+    // Code to work with buttons osmBtn and satelliteBtn
     document.getElementById("osmBtn").onclick = function() {changeBasemapToOSM()};
     document.getElementById("satelliteBtn").onclick = function() {changeBasemapToSatellite()};
     //document.getElementById("osmBtn").style.color = "red"; // Change button color
 
-    //map.addLayer(Satellite);
-    map.removeLayer(Satellite);
-
     function changeBasemapToSatellite(){
     map.removeLayer(OSM);
     map.addLayer(Satellite);
+    // Tries to put vector and raster layer on top of Satellite layer
+    //map.setLayerIndex(vector, 2);
+    //ol.source.vector.vectorLayer.setZIndex(zIndex);
+    //map.getLayers().setAt(99, Satellite)
     }
 
     function changeBasemapToOSM(){

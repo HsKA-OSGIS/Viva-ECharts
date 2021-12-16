@@ -1,18 +1,6 @@
 let vectorSource;
 let rasterSource;
 
-function mapMain(){
-    map = new ol.Map({
-        layers: [OSM = new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })],
-        view: new ol.View({
-        center: ol.proj.fromLonLat([9, 51]),
-        zoom: 6.1
-        }),
-        target: 'map'
-    });
-
     vectorSource = new ol.source.Vector({
         format: new ol.format.GeoJSON()
     });
@@ -29,9 +17,24 @@ function mapMain(){
         source: rasterSource
     });
 
+    let OSM = new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+
+function mapMain(){
+    map = new ol.Map({
+        layers: [OSM = new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })],
+        view: new ol.View({
+        center: ol.proj.fromLonLat([9, 51]),
+        zoom: 6.1
+        }),
+        target: 'map'
+    });
+
     map.addLayer(vector);
     map.addLayer(raster);
-
 }
 
 function map2(){
@@ -50,7 +53,8 @@ function map2(){
         center: ol.proj.fromLonLat([9, 51]),
         zoom: 6.1
       })
-    });
-    
-}
+    });   
 
+    map2.addLayer(vector);
+    map2.addLayer(raster);
+}
