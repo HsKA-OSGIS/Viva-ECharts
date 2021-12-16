@@ -1,3 +1,8 @@
+let layer;
+let start;
+let end;
+let nuclide;
+
 /*SIDEBAR FUNCTIONS*/
 var sidebarState = 0 // close
 function open_closeNav() {
@@ -68,7 +73,9 @@ function linkMenuEvents(){
 			label.style.fontWeight = "normal"
 		  }
 		})
-	  })
+	})
+	
+
 }
 
 function mainInit(){
@@ -79,16 +86,7 @@ function mainInit(){
 	mapMain();
     map2();
 
-	//Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
-	url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
-	//Example for mushrooms and Cs-137
-	getFeatures(url, function(features){console.log(features)});
-
-	//Example for meat and K-40 and a different period of time
-	url = URLBuilder("nuklide_fleisch", "2021-11-24T11:00:00.000Z","2021-12-14T11:00:00.000Z","K-40")
-	console.log(url)
-	getFeatures(url, function(features){console.log(features)});
-
+	
 	//Adding a layer to the map from WFS
 	url = URLBuilder("nuklide_fleisch", "2021-11-24T11:00:00.000Z","2021-12-14T11:00:00.000Z","K-40")
 	vectorSource.setUrl(url);
@@ -100,13 +98,6 @@ function mainInit(){
 	cql_filter = "nuclide = 'Cs-137'"
 	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
 	
-    // Following lines are for drop-down menu to change the basemap
-	// Get the button, and when the user clicks on it, execute myFunction
-    document.getElementById("myBtn").onclick = function() {myFunction()};
-
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
 
     // function to close drop-down-menu when user clicks outside of it
     window.onclick = function(event) {
@@ -120,25 +111,6 @@ function mainInit(){
           }
         }
       }
-    }
-
-    // Code to work with buttons osmBtn and satelliteBtn
-    document.getElementById("osmBtn").onclick = function() {changeBasemapToOSM()};
-    document.getElementById("satelliteBtn").onclick = function() {changeBasemapToSatellite()};
-    //document.getElementById("osmBtn").style.color = "red"; // Change button color
-
-    function changeBasemapToSatellite(){
-    map.removeLayer(OSM);
-    map.addLayer(Satellite);
-    // Tries to put vector and raster layer on top of Satellite layer
-    //map.setLayerIndex(vector, 2);
-    //ol.source.vector.vectorLayer.setZIndex(zIndex);
-    //map.getLayers().setAt(99, Satellite)
-    }
-
-    function changeBasemapToOSM(){
-    map.removeLayer(Satellite);
-    map.addLayer(OSM);
     }
 
 }
