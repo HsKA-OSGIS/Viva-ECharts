@@ -49,7 +49,10 @@ function open_closeNav() {
 	var cb4 = document.getElementById("xchart");
 	if (cb1.checked==true || cb2.checked==true || cb3.checked==true || cb4.checked==true){
 		console.log("mirando")
-		charts()}
+		charts()
+	}else{
+		libs_general_hideAllDivsInDivExceptOne("div-mapchart", "div-chart0");
+	}
 	
     document.getElementById("mySidenav").style.width = "0";
 	document.getElementById("div-home2").style.marginRight = "0";
