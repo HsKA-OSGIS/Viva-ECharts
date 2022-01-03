@@ -84,7 +84,6 @@ function mainInit(){
 	showDivHome();
 	linkMenuEvents();
 	mapMain();
-    map2();
 
 	
 	//Adding a layer to the map from WFS
