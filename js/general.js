@@ -5,8 +5,15 @@ function URLBuilder(layer,start,end,nuclide){
 	url.searchParams.append("version","1.0.0")
 	url.searchParams.append("request","GetFeature")
 	url.searchParams.append("typeName","opendata:" + layer)
-	url.searchParams.append("CQL_FILTER","(sample_begin DURING "+start+"/"+end+") AND (nuclide = '"+nuclide+"')")
-	url.searchParams.append("VIEWPARAMS","order:sample_begin")
+	if(layer == 'new_gamma_aerosole_24h'){
+		url.searchParams.append("CQL_FILTER","(end_measure="+end+") AND (nuclide = '"+nuclide+"')")
+	}
+	if(layer == 'odl_brutto_1h'){
+		url.searchParams.append("CQL_FILTER","(end_measure="+end+") AND (source = 'BfS')")
+	}else{
+		url.searchParams.append("CQL_FILTER","(sample_begin DURING "+start+"/"+end+") AND (nuclide = '"+nuclide+"')")
+		url.searchParams.append("VIEWPARAMS","order:sample_begin")
+	}
 	url.searchParams.append("outputFormat","application/json")
 
     return url.href
