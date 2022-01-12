@@ -59,3 +59,7 @@ function libs_general_hideAllDivsInDivExceptOne(divParentName, divName) {
 	var div= document.querySelector(selector);//selects only one
 	div.style.display = 'block';
 }
+
+function avg(list){
+	return list.reduce((a, b) => (a+b)) / list.length;
+}
