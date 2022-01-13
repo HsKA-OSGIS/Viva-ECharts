@@ -32,8 +32,7 @@ function gaugeChart(layer, start, end, nuclide){
 
 		var mean = avg(data).toFixed(4);
 
-	var chartDom = document.getElementById('chart1');
-	var myChart = echarts.init(chartDom);
+	var gaugeChart = echarts.init(document.getElementById('chart1'));
 	var option;
 
 	option = {
@@ -63,23 +62,54 @@ function gaugeChart(layer, start, end, nuclide){
 	]
 
 	};
-	option && myChart.setOption(option);
+	gaugeChart.setOption(option);
 	});
 
 };
 
-function pieChart(layer, start, end, nuclide){
+function barChart(layers, start, end, nuclide){
 
-	url = URLBuilder(layer, start, end, nuclide)
-	getFeatures(url, function(features){console.log(features)});
+	data = {};
+	
+	layers.forEach(lyr => {
+
+		var values = [];
+
+		url = URLBuilder(lyr, start, end, nuclide)
+		getFeatures(url, function(features){
+
+			for(feat in features){
+
+				values.push(features[feat].properties.value);
+
+			}
+
+			mean = avg(values);
+			data[lyr] = mean;
+		});
+	});
+
+	var barChart = echarts.init(document.getElementById('chart2'));
+	var option;
+
+	option = {
+	xAxis: {
+		type: 'category',
+		data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+	},
+	yAxis: {
+		type: 'value'
+	},
+	series: [
+		{
+		data: [120, 200, 150, 80, 70, 110, 130],
+		type: 'bar'
+		}
+	]
+	};
+
+	barChart.setOption(option);
 
 };
 
-function sclatterChart(layer, start, end, nuclide){
 
-	url = URLBuilder(layer, start, end, nuclide)
-	getFeatures(url, function(features){console.log(features)});
-
-};
-
-gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
