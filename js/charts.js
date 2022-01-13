@@ -69,7 +69,7 @@ function gaugeChart(layer, start, end, nuclide){
 
 function barChart(layers, start, end, nuclide){
 
-	data = {};
+	var data = {};
 	
 	layers.forEach(lyr => {
 
@@ -89,26 +89,30 @@ function barChart(layers, start, end, nuclide){
 		});
 	});
 
-	var barChart = echarts.init(document.getElementById('chart2'));
-	var option;
+	function displayBarChart(){
+		var barChart = echarts.init(document.getElementById('chart2'));
+		var option;
 
-	option = {
-	xAxis: {
-		type: 'category',
-		data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-	},
-	yAxis: {
-		type: 'value'
-	},
-	series: [
-		{
-		data: [120, 200, 150, 80, 70, 110, 130],
-		type: 'bar'
-		}
-	]
-	};
+		option = {
+		xAxis: {
+			type: 'category',
+			data: Object.keys(data)
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: [
+			{
+			data: Object.values(data),
+			type: 'bar'
+			}
+		]
+		};
 
-	barChart.setOption(option);
+		barChart.setOption(option);
+	}
+
+	setTimeout(displayBarChart, 8000)
 
 };
 
