@@ -1,19 +1,18 @@
 //Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
 url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
-//Example for mushrooms and Cs-137
-getFeatures(url, function(features){});
+
 
 //Example for meat and K-40 and a different period of time
 url = URLBuilder("nuklide_fleisch", "2021-11-24T11:00:00.000Z","2021-12-14T11:00:00.000Z","K-40")
-getFeatures(url, function(features){});
+
 
 //Example for air and and Cs-137
 url = URLBuilder("new_gamma_aerosole_24h", null,"2021-12-03T00:00:00.000Z","Cs-137");
-getFeatures(url, function(features){});
+
 
 //Example example for gamma radiation (ODL)
 url = URLBuilder("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
-getFeatures(url, function(features){});
+
 
 function gaugeChart(layer, start, end, nuclide){
 
@@ -71,25 +70,34 @@ function barChart(layers, start, end, nuclide){
 
 	var data = {};
 	
-	layers.forEach(lyr => {
+	for(var i = 0; i<layers.length; i++){
 
+		var lyr = layers[i];
 		var values = [];
 
-		url = URLBuilder(lyr, start, end, nuclide)
-		getFeatures(url, function(features){
+		url = URLBuilder(lyr, start, end, nuclide);
 
-			for(feat in features){
-
-				values.push(features[feat].properties.value);
-
+		vectorSource.setUrl(url);
+		
+		vectorSource.on('change', function(evt){
+			vectorSource = evt.target;
+			if (vectorSource.getState() === 'ready'){
+				var features = vectorSource.getFeatures();
+				
+				for(feat in features){
+					values.push(features[feat].getProperties().value);
+				}
+	
+				mean = avg(values);
+				data[lyr] = mean;
 			}
-
-			mean = avg(values);
-			data[lyr] = mean;
 		});
-	});
+	};
+
+
 
 	function displayBarChart(){
+		console.log(data);
 		var barChart = echarts.init(document.getElementById('chart2'));
 		var option;
 
@@ -112,7 +120,7 @@ function barChart(layers, start, end, nuclide){
 		barChart.setOption(option);
 	}
 
-	setTimeout(displayBarChart, 8000)
+	displayBarChart();
 
 };
 
