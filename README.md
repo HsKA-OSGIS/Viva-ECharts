@@ -12,13 +12,13 @@
 - #### What is this project about?
 Text here
 - #### Background
-Text here
+This software project was designed, programmed and published as part of the course "Open Source GIS" of the masters program Geomatics at the University of Applied Sciences Karlsruhe. The students were tasked to form groups and either start a new software project, or expand on an already existing project from previous semesters. Only open source software and libraries were permitted to solve the tasks.
 - #### How did we build it?
 Text here
 - #### How did we solve it?
 Text here
 - #### What did we learn?
-Text here
+Over the course of the project we learned how to use and distribute open source software, how to create programs that makes use of other open source software and data, and how to access and use geospatial data as a service (namely a web feature service). Furthermore we learned the proper applied usage of git as well as services of GitHub, and thus how to organize and handle the development of a software project.
 - #### (What makes this project stand out)
 Text here
 
