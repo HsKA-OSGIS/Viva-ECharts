@@ -15,22 +15,25 @@ Text here
 This software project was designed, programmed and published as part of the course "Open Source GIS" of the masters program Geomatics at the University of Applied Sciences Karlsruhe. The students were tasked to form groups and either start a new software project, or expand on an already existing project from previous semesters. Only open source software and libraries were permitted to solve the tasks.
 - #### How did we build it?
 Text here
-- #### How did we solve it?
-Text here
+
 - #### What did we learn?
 Over the course of the project we learned how to use and distribute open source software, how to create programs that makes use of other open source software and data, and how to access and use geospatial data as a service (namely a web feature service). Furthermore we learned the proper applied usage of git as well as services of GitHub, and thus how to organize and handle the development of a software project.
-- #### (What makes this project stand out)
-Text here
 
 ## 2. How to install and run this project
-Description 1 here
+Description how to install the project; wait until finished
 
-Descirption 2 here
+Descirption how to run the project; wait until finished
 
 ## 3. How to use this project
-Description
+Description how to use the widgets; wait until functionalitites are implemented
 
 ## 4. Credits
+Dr. Marco Lechner
+Kevin Klöditz
+Manuel Miñambres​
+Javier Roig
+Ana Sánchez
+Jenny Unger
 
 ## 5. Licenses
 - [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
