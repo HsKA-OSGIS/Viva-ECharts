@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="externalLibs/bootstrap/css/bootstrap.css">
         
         <!--My JS-->
+        <script type="text/javascript" src="js/fsm.js" defer></script>
         <script type="text/javascript" src="js/general.js"></script>
         <script type="text/javascript" src="js/WFS.js"></script>
         <script type="text/javascript" src="js/charts.js"></script>
@@ -74,29 +75,38 @@
             <!--<span onclick="openNav()">>>></span><--- Element in the main menu-->
             <!--<div id="div-home2">-->
               <div id="main">
-                <div class="row equal">
-                  <div class="column" id="div-map">
-                    <div id="map"></div>
+                <div id="fsm_container" class="fsm-container">
+                  <div class="row equal">
+                    <div class="column" id="div-map">
+                      <div class="fsm">
+                        <div class="fa fa-map" id="map"></div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="fsm">
+                        <div class="fa fa-chart1" id="chart1" style="width: 400px; height: 400px;"></div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="fsm">
+                        <div class="fa fa-chart2" id="chart2" style="width: 400px; height: 400px;"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="column">
-                    <div id="chart1" style="width: 400px; height: 400px;"></div>
+                  <div class="row equal">
+                    <div class="column">
+                      <div class="fsm">
+                        <div class="fa fa-chart3">chart3</div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      chart4
+                    </div>
+                    <div class="column">
+                      chart5
+                    </div>
                   </div>
-                  <div class="column">
-                    <div id="chart2" style="width: 400px; height: 400px;"></div>
-                  </div>
-                </div>
-                <div class="row equal">
-                  <div class="column">
-                    chart3
-                  </div>
-                  <div class="column">
-                    chart4
-                  </div>
-                  <div class="column">
-                    chart5
-                  </div>
-                </div>
-                
+               </div> 
             </div>
                 <!--<div class="row">
                     <div class="col-sm-11">
