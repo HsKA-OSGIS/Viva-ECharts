@@ -36,12 +36,12 @@ To run the program select and open the __index.html__ file. Your default browser
 Description how to use the widgets; wait until functionalities are implemented
 
 ## 4. Credits
-Dr. Marco Lechner
-Kevin Klöditz
-Manuel Miñambres​
-Javier Roig
-Ana Sánchez
-Jenny Unger
+- Dr. Marco Lechner
+- [Kevin Klöditz](mailto:klke1019@h-ka.de)
+- Manuel Miñambres​
+- Javier Roig
+- Ana Sánchez
+- Jenny Unger  
 
 ## 5. Licenses
 - [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
