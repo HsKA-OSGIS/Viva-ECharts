@@ -16,20 +16,23 @@ url = URLBuilder("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
 
 function gaugeChart(layer, start, end, nuclide){
 
-	var data = [];
+	var list = [];
     
 	url = URLBuilder(layer, start, end, nuclide)
-	getFeatures(url, function(features){
+
+	$.get(url).done(function (data) {
+
+		var features = data.features;
 		
 		for(feat in features){
 
 			info = features[feat].properties.value;
-
-			data.push(info);
+			console.log(info);
+			list.push(info);
 
 		}
 
-		var mean = avg(data).toFixed(4);
+		var mean = avg(list).toFixed(4);
 
 	var gaugeChart = echarts.init(document.getElementById('chart1'));
 	var option;
@@ -68,60 +71,51 @@ function gaugeChart(layer, start, end, nuclide){
 
 function barChart(layers, start, end, nuclide){
 
-	var data = {};
-	
-	for(var i = 0; i<layers.length; i++){
+	var myBarChart = echarts.init(document.getElementById('chart2'));
+	var option;
 
-		var lyr = layers[i];
-		var values = [];
+	dicc = {};
 
-		url = URLBuilder(lyr, start, end, nuclide);
-
-		vectorSource.setUrl(url);
+	layers.forEach(lyr => {
 		
-		vectorSource.on('change', function(evt){
-			vectorSource = evt.target;
-			if (vectorSource.getState() === 'ready'){
-				var features = vectorSource.getFeatures();
-				
-				for(feat in features){
-					values.push(features[feat].getProperties().value);
-				}
+		url = URLBuilder(lyr, start, end, nuclide)
+		var values = [];
+		
+		$.get(url).done(function (data) {
+
+			var features = data.features;
+
+			for(feat in features){
+				values.push(features[feat].properties.value);
+			}
+
+			mean = avg(values);
+			dicc[lyr] = mean;
+
+			option = {
+				xAxis: {
+					type: 'category',
+					data: Object.keys(dicc)
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [
+					{
+					data: Object.values(dicc),
+					type: 'bar'
+					}
+				]
+				};
 	
-				mean = avg(values);
-				data[lyr] = mean;
-			}
+			option && myBarChart.setOption(option);
+			
 		});
-	};
 
+	});
 
-
-	function displayBarChart(){
-		console.log(data);
-		var barChart = echarts.init(document.getElementById('chart2'));
-		var option;
-
-		option = {
-		xAxis: {
-			type: 'category',
-			data: Object.keys(data)
-		},
-		yAxis: {
-			type: 'value'
-		},
-		series: [
-			{
-			data: Object.values(data),
-			type: 'bar'
-			}
-		]
-		};
-
-		barChart.setOption(option);
-	}
-
-	displayBarChart();
 
 };
+
 
 
