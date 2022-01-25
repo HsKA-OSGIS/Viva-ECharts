@@ -1,3 +1,5 @@
+const { ObjectEvent } = require("ol/Object");
+
 //Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
 url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
 
@@ -23,13 +25,14 @@ function gaugeChart(layer, start, end, nuclide){
 	$.get(url).done(function (data) {
 
 		var features = data.features;
+
+		var units = features[0].properties.unit;
 		
 		for(feat in features){
 
 			info = features[feat].properties.value;
-			console.log(info);
-			list.push(info);
 
+			list.push(info);
 		}
 
 		var mean = avg(list).toFixed(4);
@@ -52,7 +55,7 @@ function gaugeChart(layer, start, end, nuclide){
 		},
 			detail: {
 			valueAnimation: true,
-			formatter: '{value}'
+			formatter: '{value}' + ' '+ units
 		},
 			data: [
 				{
@@ -74,7 +77,7 @@ function barChart(layers, start, end, nuclide){
 	var myBarChart = echarts.init(document.getElementById('chart2'));
 	var option;
 
-	dicc = {};
+	var dicc = {};
 
 	layers.forEach(lyr => {
 		
@@ -116,6 +119,63 @@ function barChart(layers, start, end, nuclide){
 
 
 };
+
+function lineChart(layer, start, end, nuclide){
+
+	var myLineChart = echarts.init(document.getElementById('chart3'));
+	var option;
+
+	var dicc = {};
+	var hours = [];
+
+	for(var hour = 0; hour<24; hour++){
+
+		if(hour < 10){
+			hour = '0' + hour;
+		}
+		hours.push(hour);
+	}
+
+	hours.forEach(hour=>{
+
+		console.log(hour);
+		url = URLBuilder(layer, start, end + "T" + hour + ":00:00.000Z", nuclide)
+		var values = [];
+
+		$.get(url).done(function(data){
+
+			var features = data.features;
+
+			for(feat in features){
+				values.push(features[feat].properties.value);
+			}
+
+			var mean = avg(values);
+			dicc[hour] = mean;
+
+			option = {
+				xAxis: {
+				  type: 'category',
+				  boundaryGap: false,
+				  data: Object.keys(dicc)
+				},
+				yAxis: {
+				  type: 'value'
+				},
+				series: [
+				  {
+					data: Object.values(dicc),
+					type: 'line',
+					areaStyle: {}
+				  }
+				]
+			};
+
+			option && myLineChart.setOption(option);
+
+		});
+	});
+}
 
 
 

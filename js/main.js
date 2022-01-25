@@ -53,13 +53,7 @@ function mainInit(){
 	linkMenuEvents();
 	mapMain();
 
-	
-	//Adding a layer to the map from WMS
-	layer = 'opendata:nuklide_fleisch';
-	service = 'WMS'
-	time = '2020-12-14T10:00:00.000Z/2021-12-14T10:00:00.000Z'
-	cql_filter = "nuclide = 'Cs-137'"
-	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
+	addWMS("nuklide_pilze", '2020-12-20T10:00:00.000Z', '2021-12-14T10:00:00.000Z', 'K-40');
 	
 
     // function to close drop-down-menu when user clicks outside of it
@@ -84,5 +78,6 @@ window.onload = function() {
 	//Call examples to display charts
 	gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
 	barChart(["nuklide_pilze", "nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137");
+	lineChart("odl_brutto_1h", null, "2021-12-03", null);
 
 };

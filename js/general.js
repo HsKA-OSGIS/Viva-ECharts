@@ -63,3 +63,11 @@ function libs_general_hideAllDivsInDivExceptOne(divParentName, divName) {
 function avg(list){
 	return list.reduce((a, b) => (a+b)) / list.length;
 }
+
+function addWMS(lyr, start, end, nuclide){
+	layer = 'opendata:' + lyr;
+	service = 'WMS';
+	time = start + '/' + end;
+	cql_filter = "nuclide = '" + nuclide + "'";
+	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
+}
