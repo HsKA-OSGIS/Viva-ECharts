@@ -64,37 +64,59 @@
               <div class="column">
                 chart6
               </div>
-              <form id="table_layer" onsubmit="event.preventDefault();">
-              <div class="mb-3">
-                <select name="tableName" id="table_layer1"aria-label="Default select example">
-                  <option>odl_brutto_1h</option>
-                  <option>new_gamma_aerosole_24h</option>
-                  <option>nuklide_fleisch</option>
-                  <option>nuklide_pilze</option>
-                </select>
-              </div>
-              </form>
-              <form id="table_layer_date" onsubmit="event.preventDefault();">
-              <div class="mb-3">
-                <select name="tableName" aria-label="Default select example">
-                  <option>2020-12-08T13:00:00.000Z</option>
-                  <option>2021-21-08T13:00:00.000Z</option>
-                  <option>2021-11-24T11:00:00.000Z</option>
-                  <option>2021-12-03T16:00:00.000Z</option>
-                </select>
-              </div>
-            </form>
-            <form id="table_layer_operations" onsubmit="event.preventDefault();">
-              <div class="mb-3">
-                <select name="tableName" aria-label="Default select example">
-                  <option>MEAN</option>
-                  <option>MAX</option>
-                  <option>MIN</option>
-                </select>
-              </div>
-            </form>
             </div>
-            <button class="btn btn-primary" id="btn-gaugeChart">Do gaugeChart</button>
+            <div id=form class="form-select">
+              <select class="form-select" id="chartSelect" aria-label="Floating label select example">
+                <option value="barChart">Bar</option>
+                <option value="lineChart">Line</option>
+                <option value="gaugeChart">Gauge</option>
+              </select>
+              <label for="chartSelect">Select a chart</label>
+              <div class="row g-2">
+                <div class="col-md">
+                  <div class="form-select">
+                    <select class="form-select" id="layerSelect" multiple aria-label="multiple select example">
+                      <option value="odl_brutto_1h">ODL</option>
+                      <option value="nuklide_pilze">Pilze</option>
+                      <option value="nuklide_fleisch">Fleisch</option>
+                    </select>
+                    <label for="layerSelect">Select a layer</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <div class="form-select">
+                    <select class="form-select" id="nuklideSelect" multiple aria-label="multiple select example">
+                      <option value="Cs-137">Cs-137</option>
+                      <option value="K-40">K-40</option>
+                    </select>
+                    <label for="nuklideSelect">Select a nuklide</label>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-md">
+                    <p>Select start date</p>
+                    <input type="date" id="startDaySelect" name="trip-start"value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                    <p>Select end date</p>
+                    <input type="date" id="endDaySelect" name="trip-start"value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                  </div>
+                  <div class="col-md">
+                    <label for="startHourSelect">Select start hour</label>
+                    <input type="time" id="startHourSelect" name="appt" min="09:00" max="18:00" required>
+                    <label for="endHourSelect">Select end hour:</label>
+                    <input type="time" id="endHourSelect" name="appt" min="09:00" max="18:00" required>
+                    <select id="statSelect" class="form-select" aria-label="Default select example">
+                      <option selected>Select the stat</option>
+                      <option value="MAX">Maximum</option>
+                      <option value="MIN">Minimum</option>
+                      <option value="MEAN">Average</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button id="btnVisualize" type="button" class="btn btn-success">Visualize</button>
+            </div>
           </div>
         <div id="div-form1">
         </div>
