@@ -54,7 +54,7 @@ function gaugeChart(layer, end, stat){
 		},
 	series: [
 		{
-			name: 'Pressure',
+			name: 'Radiation',
 			type: 'gauge',
 			min: 0,
 			max: 0.5,
@@ -162,6 +162,8 @@ function lineChart(layer, end, stat){
 		var values = [];
 
 		$.get(url).done(function(data){
+
+			console.log(data);
 
 			var features = data.features;
 

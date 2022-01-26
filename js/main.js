@@ -63,16 +63,16 @@ function linkMenuEvents(){
 		var startDay = document.getElementById("startDaySelect").value;
 		var startHour = document.getElementById("startHourSelect").value;
 
-		start = startDay+startHour;
-		end = endDay+endHour;
+		start = startDay+'T'+startHour+':00.000Z';
+		end = endDay+'T'+endHour+':00.000Z';
 
-		console.log(start);
 
 		if(chart === "barChart"){
 			barChart(layers, start, end, nuclide, stat);
 		}
 		if(chart === "lineChart"){
-			lineChart(layer, end, stat);
+			lineChart(layer, endDay, stat);
+
 		}
 		if(chart === "gaugeChart"){
 			gaugeChart(layer, end, stat);
