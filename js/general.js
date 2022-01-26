@@ -64,6 +64,18 @@ function avg(list){
 	return list.reduce((a, b) => (a+b)) / list.length;
 }
 
+function arr_min(arr) {
+	return arr.reduce(function (p, v) {
+	  return ( p < v ? p : v );
+	});
+}
+  
+function arr_max(arr) {
+	return arr.reduce(function (p, v) {
+		return ( p > v ? p : v );
+	});
+}
+
 function addWMS(lyr, start, end, nuclide){
 	layer = 'opendata:' + lyr;
 	service = 'WMS';

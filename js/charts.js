@@ -16,7 +16,7 @@ url = URLBuilder("new_gamma_aerosole_24h", null,"2021-12-03T00:00:00.000Z","Cs-1
 url = URLBuilder("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
 
 
-function gaugeChart(layer, start, end, nuclide){
+function gaugeChart(layer, start, end, nuclide, stat){
 
 	var list = [];
     
@@ -35,7 +35,17 @@ function gaugeChart(layer, start, end, nuclide){
 			list.push(info);
 		}
 
-		var mean = avg(list).toFixed(4);
+		if(stat === "MEAN"){			
+			var value = avg(list).toFixed(4);
+		}
+
+		if(stat === "MAX"){
+			var value = arr_max(list);
+		}
+
+		if(stat === "MIN"){
+			var value = arr_min(list);
+		}
 
 	var gaugeChart = echarts.init(document.getElementById('chart1'));
 	var option;
@@ -59,8 +69,8 @@ function gaugeChart(layer, start, end, nuclide){
 		},
 			data: [
 				{
-					value: mean,
-					name: 'SCORE'
+					value: value,
+					name: stat
 				}
 				]
 			}
@@ -72,7 +82,7 @@ function gaugeChart(layer, start, end, nuclide){
 
 };
 
-function barChart(layers, start, end, nuclide){
+function barChart(layers, start, end, nuclide, stat){
 
 	var myBarChart = echarts.init(document.getElementById('chart2'));
 	var option;
@@ -92,8 +102,20 @@ function barChart(layers, start, end, nuclide){
 				values.push(features[feat].properties.value);
 			}
 
-			mean = avg(values);
-			dicc[lyr] = mean;
+			if(stat === "MEAN"){			
+				var mean = avg(values);
+				dicc[lyr] = mean;
+			}
+
+			if(stat === "MAX"){
+				var max = arr_max(values);
+				dicc[lyr] = max;
+			}
+
+			if(stat === "MIN"){
+				var min = arr_min(values);
+				dicc[lyr] = min;
+			}
 
 			option = {
 				xAxis: {
@@ -120,7 +142,7 @@ function barChart(layers, start, end, nuclide){
 
 };
 
-function lineChart(layer, start, end, nuclide){
+function lineChart(layer, start, end, nuclide, stat){
 
 	var myLineChart = echarts.init(document.getElementById('chart3'));
 	var option;
@@ -138,7 +160,6 @@ function lineChart(layer, start, end, nuclide){
 
 	hours.forEach(hour=>{
 
-		console.log(hour);
 		url = URLBuilder(layer, start, end + "T" + hour + ":00:00.000Z", nuclide)
 		var values = [];
 
@@ -150,8 +171,21 @@ function lineChart(layer, start, end, nuclide){
 				values.push(features[feat].properties.value);
 			}
 
-			var mean = avg(values);
-			dicc[hour] = mean;
+			if(stat === "MEAN"){			
+				var mean = avg(values);
+				dicc[hour] = mean;
+			}
+
+			if(stat === "MAX"){
+				var max = arr_max(values);
+				dicc[hour] = max;
+			}
+
+			if(stat === "MIN"){
+				var min = arr_min(values);
+				dicc[hour] = min;
+			}
+
 
 			option = {
 				xAxis: {

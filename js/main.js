@@ -76,8 +76,8 @@ window.onload = function() {
 	mainInit();
 
 	//Call examples to display charts
-	gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
-	barChart(["nuklide_pilze", "nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137");
-	lineChart("odl_brutto_1h", null, "2021-12-03", null);
+	gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null,"MAX");
+	barChart(["nuklide_pilze", "nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
+	lineChart("odl_brutto_1h", null, "2021-12-03", null,"MAX");
 
 };
