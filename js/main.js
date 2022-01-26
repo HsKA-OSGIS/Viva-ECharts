@@ -12,6 +12,22 @@ function showDivAbout(){
 function showDivHelp(){
     libs_general_hideAllDivsInDivExceptOne("div-main", "div-help") 
 }
+function dogaugeChart(){
+	var a = document.getElementById("table_layer")
+	var b = document.getElementById("table_layer_date")
+	var c = document.getElementById("table_layer_operations")
+	var formData = new FormData(a) 
+	var formDatab = new FormData(b) 
+	var formDatac = new FormData(c) 
+	var data =Object.fromEntries(formData);
+	var datab =Object.fromEntries(formDatab);
+	var datac =Object.fromEntries(formDatac);
+	var layer = Object.values(data)
+	var layerb = Object.values(datab)
+	var layerc = Object.values(datac)
+	gaugeChart(layer, null, layerb, null, layerc);
+	//gaugeChart(layer, null, "2021-12-03T16:00:00.000Z", null,"MEAN");
+}
 function changeActive(){
 	var current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
@@ -37,10 +53,10 @@ function linkMenuEvents(){
 	document.getElementById("menu-about").addEventListener("click", showDivAbout);
 	document.getElementById("menu-help").addEventListener("click", showDivHelp);
 	document.getElementById("menu-home").addEventListener("click", showDivHome);
+	document.getElementById("btn-gaugeChart").addEventListener("click", dogaugeChart);
 	document.getElementById("menu-about").addEventListener("click", changeActive);
 	document.getElementById("menu-help").addEventListener("click", changeActive1);
 	document.getElementById("menu-home").addEventListener("click", changeActive2);
-
 }
 
 function mainInit(){
@@ -77,7 +93,6 @@ window.onload = function() {
 	mainInit();
 
 	//Call examples to display charts
-	gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null,"MEAN");
 	barChart(["nuklide_pilze","nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
 	lineChart("odl_brutto_1h", null, "2021-12-03", null,"MIN");
 
