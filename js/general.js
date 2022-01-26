@@ -77,9 +77,26 @@ function arr_max(arr) {
 }
 
 function addWMS(lyr, start, end, nuclide){
-	layer = 'opendata:' + lyr;
-	service = 'WMS';
-	time = start + '/' + end;
-	cql_filter = "nuclide = '" + nuclide + "'";
+
+	var service = 'WMS';
+
+	if(lyr === "odl_brutto_1h"){
+		
+		var layer = 'opendata:' + lyr;
+		var time = start;
+		var cql_filter = "source = 'BfS'";
+
+	}else{
+
+		var layer = 'opendata:' + lyr;
+		var time = start + '/' + end;
+		var cql_filter = "nuclide = '" + nuclide + "'";
+		
+	}
+
 	rasterSource.updateParams({'SERVICE':service, 'LAYERS':layer,'TIME':time, 'cql_filter':cql_filter});
+	
 }
+//https://www.imis.bfs.de/ogc/opendata/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&LAYERS=opendata:nuklide_pilze&TIME=2020-12-20T10:00:00.000Z/2021-12-14T10:00:00.000Z&cql_filter=nuclide = 'K-40'&CRS=EPSG:3857&STYLES=&WIDTH=590&HEIGHT=591&BBOX=328630.9562209031,5946908.169514964,1675119.878058021,7295679.275965366
+
+

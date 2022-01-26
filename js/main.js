@@ -16,7 +16,6 @@ function changeActive(){
 	var current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 	var current = document.getElementById("menu-about");
-	// console.log(current)
 	current.className = current.className.replace("header","header active");
 	console.log(current.className)
 }
@@ -24,7 +23,6 @@ function changeActive1(){
 	var current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 	var current = document.getElementById("menu-help");
-	// console.log(current)
 	current.className = current.className.replace("header","header active");
 	console.log(current.className)
 }
@@ -32,7 +30,6 @@ function changeActive2(){
 	var current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 	var current = document.getElementById("menu-home");
-	// console.log(current)
 	current.className = current.className.replace("header","header active");
 	console.log(current.className)
 }
@@ -53,7 +50,11 @@ function mainInit(){
 	linkMenuEvents();
 	mapMain();
 
-	addWMS("nuklide_pilze", '2020-12-20T10:00:00.000Z', '2021-12-14T10:00:00.000Z', 'K-40');
+	//Call example WMS for food
+	//addWMS("nuklide_pilze", '2020-12-20T10:00:00.000Z', '2021-12-14T10:00:00.000Z', 'K-40');
+
+	//Call example WMS for ODL
+	addWMS("odl_brutto_1h", '2022-01-26T09:00:00.000Z');
 	
 
     // function to close drop-down-menu when user clicks outside of it
@@ -77,7 +78,7 @@ window.onload = function() {
 
 	//Call examples to display charts
 	gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null,"MAX");
-	barChart(["nuklide_pilze", "nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
+	barChart(["nuklide_pilze","nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
 	lineChart("odl_brutto_1h", null, "2021-12-03", null,"MAX");
 
 };
