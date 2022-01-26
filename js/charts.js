@@ -212,4 +212,112 @@ function lineChart(layer, start, end, nuclide, stat){
 }
 
 
+function racelineChart(layer, start, end, nuclide, stat){
+
+	var myraceLineChart = echarts.init(document.getElementById('chart4'));
+	var option;
+
+	var dicc0= [];
+	var months = [];
+
+	for(var month = 0; month<12; month++){
+		if(month< 10){
+			month= '0' + month;
+		}
+		months.push(month);
+	}
+
+	layer.forEach(lyr=>{
+		var dicc1 = {};
+		months.forEach(month=>{
+			start="2020-"+month+"-01T00:00:00.000Z"
+			end="2020-"+month+"-31T00:00:00.000Z"
+			url = URLBuilder(layer, start, end, nuclide)
+			var values = [];
+
+			$.get(url).done(function(data){
+
+				var features = data.features;
+
+				for(feat in features){
+					values.push(features[feat].properties.value);
+				}
+
+				if(stat === "MEAN"){			
+					var mean = avg(values);
+					dicc1[month] = mean;
+				}
+
+				if(stat === "MAX"){
+					var max = arr_max(values);
+					dicc1[month] = max;
+				}
+
+				if(stat === "MIN"){
+					var min = arr_min(values);
+					dicc1[month] = min;
+				}
+				
+			});//get url
+		});//month
+		dicc1['lyr'] = lyr;
+		dicc0.push(dicc1);
+		//dicc0[lyr] = dicc1;;
+	});//layer
+	
+	var legend_data=[];
+	var series1=[];
+	dicc0.forEach(d=>{
+		legend_data.push(d.name);
+		s={
+			name:d.name,
+			type:'line',
+			stack:'Total',
+			data: Object.values(d)
+		};
+		series1.push(s);
+	});
+	console.log(legend_data);
+	console.log(series1);
+
+	option = {
+		title: {
+			text: 'Cs-137 in Food'
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend: {
+			data: Object.keys(dicc0)
+		},
+		grid: {
+			left: '3%',
+			right: '4%',
+			bottom: '3%',
+			containLabel: true
+		},
+		xAxis: {
+			type: 'category',
+			boundaryGap: false,
+			data: [Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec]
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: series1
+		/*series: [
+			{
+			name: 'Email',
+			type: 'line',
+			stack: 'Total',
+			data: [120, 132, 101, 134, 90, 230, 210]
+			}
+		]*/
+		};
+				
+		option && myraceLineChart.setOption(option);
+			
+}
+
+
 
