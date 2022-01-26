@@ -18,6 +18,8 @@
         <!--External CSS-->
         <link rel="stylesheet" href="externalLibs/ol/ol.css">
         <link rel="stylesheet" href="externalLibs/bootstrap/css/bootstrap.css">
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+
         
         <!--My JS-->
         <script type="text/javascript" src="js/general.js"></script>
@@ -62,7 +64,39 @@
               <div class="column">
                 chart6
               </div>
+              <form id="table_layer" onsubmit="event.preventDefault();">
+              <div class="mb-3">
+                <select name="tableName" id="table_layer1"aria-label="Default select example">
+                  <option>odl_brutto_1h</option>
+                  <option>new_gamma_aerosole_24h</option>
+                  <option>nuklide_fleisch</option>
+                  <option>nuklide_pilze</option>
+                </select>
+              </div>
+              </form>
+              <form id="table_layer_date" onsubmit="event.preventDefault();">
+              <div class="mb-3">
+                <select name="tableName" aria-label="Default select example">
+                  <option>2020-12-08T13:00:00.000Z</option>
+                  <option>2021-21-08T13:00:00.000Z</option>
+                  <option>2021-11-24T11:00:00.000Z</option>
+                  <option>2021-12-03T16:00:00.000Z</option>
+                </select>
+              </div>
+            </form>
+            <form id="table_layer_operations" onsubmit="event.preventDefault();">
+              <div class="mb-3">
+                <select name="tableName" aria-label="Default select example">
+                  <option>MEAN</option>
+                  <option>MAX</option>
+                  <option>MIN</option>
+                </select>
+              </div>
+            </form>
             </div>
+            <button class="btn btn-primary" id="btn-gaugeChart">Do gaugeChart</button>
+          </div>
+        <div id="div-form1">
         </div>
         <div id="div-help">
             <h4>This Help Page provides further information to help using this website</h4>

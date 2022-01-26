@@ -24,7 +24,9 @@ function dogaugeChart(){
 	var datac =Object.fromEntries(formDatac);
 	var layer = Object.values(data)
 	var layerb = Object.values(datab)
+	console.log(layerb)
 	var layerc = Object.values(datac)
+	console.log(layerc)
 	gaugeChart(layer, null, layerb, null, layerc);
 	//gaugeChart(layer, null, "2021-12-03T16:00:00.000Z", null,"MEAN");
 }
