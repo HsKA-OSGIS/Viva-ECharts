@@ -35,15 +35,15 @@ function gaugeChart(layer, start, end, nuclide, stat){
 			list.push(info);
 		}
 
-		if(stat === "MEAN"){			
+		if(stat === 'MEAN'){			
 			var value = avg(list).toFixed(4);
 		}
 
-		if(stat === "MAX"){
+		if(stat === 'MAX'){
 			var value = arr_max(list);
 		}
 
-		if(stat === "MIN"){
+		if(stat === 'MIN'){
 			var value = arr_min(list);
 		}
 
