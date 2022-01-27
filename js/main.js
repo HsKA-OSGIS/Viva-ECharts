@@ -49,15 +49,15 @@ function linkMenuEvents(){
 		chart = this.value;
 
 		if(chart === "barChart"){
-			document.getElementById("nuklideSelect").setAttribute("enabled","enabled");
-			document.getElementById("startDaySelect").setAttribute("enabled","enabled");
-			document.getElementById("startHourSelect").setAttribute("enabled","enabled");
-			document.getElementById("endHourSelect").setAttribute("enabled","enabled");
+			document.getElementById("nuklideSelect").removeAttribute("disabled");
+			document.getElementById("startDaySelect").removeAttribute("disabled");
+			document.getElementById("startHourSelect").removeAttribute("disabled");
+			document.getElementById("endHourSelect").removeAttribute("disabled");
 		}
 		
 		if(chart === "gaugeChart"){
-			document.getElementById("endDaySelect").setAttribute("enabled","enabled");
-			document.getElementById("endHourSelect").setAttribute("enabled","enabled");
+			document.getElementById("endDaySelect").removeAttribute("disabled");
+			document.getElementById("endHourSelect").removeAttribute("disabled");
 			document.getElementById("nuklideSelect").setAttribute("disabled","disabled");
 			document.getElementById("startDaySelect").setAttribute("disabled","disabled");
 			document.getElementById("startHourSelect").setAttribute("disabled","disabled");
@@ -99,8 +99,6 @@ function linkMenuEvents(){
 			var layers = Array.prototype.slice.call(document.querySelectorAll('#layerSelect option:checked'),0).map(function(v,i,a) { 
 				return v.value; 
 			});
-
-			console.log(layers);
 
 			barChart(layers, start, end, nuclide, stat);
 		}
