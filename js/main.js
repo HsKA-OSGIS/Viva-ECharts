@@ -110,6 +110,17 @@ function linkMenuEvents(){
 			gaugeChart(layer, end, stat);
 		}
 
+		if(chart === "radarChart"){
+
+			var nuclides = Array.prototype.slice.call(document.querySelectorAll('#nuklideSelect option:checked'),0).map(function(v,i,a) { 
+				return v.value; 
+			});
+
+			radarChart(layer,start,end,nuclides,stat);
+		}
+
+		addWMS(layer, end);
+
 		//Call examples to display charts
 		//gaugeChart("odl_brutto_1h", "2021-12-03T16:00:00.000Z","MAX");
 		//barChart(["nuklide_pilze","nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");

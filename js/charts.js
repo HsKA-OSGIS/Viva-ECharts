@@ -163,8 +163,6 @@ function lineChart(layer, end, stat){
 
 		$.get(url).done(function(data){
 
-			console.log(data);
-
 			var features = data.features;
 
 			for(feat in features){
@@ -186,30 +184,107 @@ function lineChart(layer, end, stat){
 				dicc[hour] = min;
 			}
 
+			if(Object.keys(dicc).length == hours.length){
 
-			option = {
-				xAxis: {
-				  type: 'category',
-				  boundaryGap: false,
-				  data: Object.keys(dicc)
-				},
-				yAxis: {
-				  type: 'value'
-				},
-				series: [
-				  {
-					data: Object.values(dicc),
-					type: 'line',
-					areaStyle: {}
-				  }
-				]
-			};
+				var sdicc = sortOnKeys(dicc);
 
-			option && myLineChart.setOption(option);
+				option = {
+					xAxis: {
+					  type: 'category',
+					  boundaryGap: false,
+					  data: Object.keys(sdicc)
+					},
+					yAxis: {
+					  type: 'value'
+					},
+					series: [
+					  {
+						data: Object.values(sdicc),
+						type: 'line',
+						areaStyle: {}
+					  }
+					]
+				};
+	
+				option && myLineChart.setOption(option);
+			}
 
 		});
 	});
 }
+
+function radarChart(layer, start, end, nuclides, stat){
+
+	var chartDom = document.getElementById('chart4');
+	var myChart = echarts.init(chartDom);
+	var option;
+
+	dicc = {}; //For each nuklide
+
+	nuclides.forEach(nuclide=>{
+
+		url = URLBuilder(layer, start, end, nuclide);
+
+		var values = [];
+
+		$.get(url).done(function(data){
+
+			var features = data.features;
+
+			for(feat in features){
+				values.push(features[feat].properties.value);
+			}
+
+			if(stat === "MEAN"){
+				var mean = avg(values);
+				dicc[nuclide] = mean;
+			}
+
+			if(stat === "MAX"){
+				var max = arr_max(values);
+				dicc[nuclide] = max;
+			}
+
+			if(stat === "MIN"){
+				var min = arr_min(values);
+				dicc[nuclide] = min;
+			}
+
+			if(Object.keys(dicc).length === nuclides.length){
+
+				indicator = [];
+				for(ind in Object.keys(dicc)){
+					indicator.push({name:Object.keys(dicc)[ind], max:2000});
+				}
+		
+				option = {
+				  radar: {
+					indicator:indicator
+				  },
+				  series: [
+					{
+					  name: 'Nuclides',
+					  type: 'radar',
+					  data: [
+						{
+						  value: Object.values(dicc),
+						  name: 'Allocated Budget'
+						}
+					  ]
+					}
+				  ]
+				};
+				
+				option && myChart.setOption(option);
+				
+			}
+
+		});
+
+
+	})
+
+};
 
 
 
