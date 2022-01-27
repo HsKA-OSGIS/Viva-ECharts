@@ -289,5 +289,103 @@ function radarChart(layer, start, end, nuclides, stat){
 
 };
 
+function barChart2(layers, start, end, nuklide, stat){
+	
+	var myBarChart2 = echarts.init(document.getElementById('chart5'));
+	var option;
+
+	var dicc = {};
+	var dicc1 = {};
+	var s = {};
+
+	layers.forEach(lyr => {
+		nuklide.forEach(nuk => {
+			url = URLBuilder(lyr, start, end, nuk)			
+			$.get(url).done(function (data) {
+				
+				if (!(lyr in dicc)){
+					dicc[lyr]={};
+					dicc1[lyr]={};
+				};
+				if (!(nuk in dicc[lyr])){
+					dicc[lyr][nuk]=[];
+				};
+				//console.log(dicc);
+				//console.log(dicc1);
+				var features = data.features;
+				for(feat in features){
+					dicc[lyr][nuk].push(features[feat].properties.value);
+				}
+				
+				if(stat === "MEAN"){			
+					var mean = avg(dicc[lyr][nuk]);
+					dicc1[lyr][nuk] = mean;
+				}
+
+				if(stat === "MAX"){
+					var max = arr_max(dicc[lyr][nuk]);
+					dicc1[lyr][nuk] = max;
+				}
+
+				if(stat === "MIN"){
+					var min = arr_min(dicc[lyr][nuk]);
+					dicc1[lyr][nuk] = min;
+				}
+
+				s[lyr]={
+					name: lyr,
+					type: 'bar',
+					//label: labelOption,
+					emphasis: {
+					  focus: 'series'
+					},
+					data: Object.values(dicc1[lyr])
+				  }
+				
+				option = {
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+						type: 'shadow'
+						}
+					},
+					legend: {
+						data: layers
+					},
+					toolbox: {
+						show: true,
+						orient: 'vertical',
+						left: 'right',
+						top: 'center',
+						feature: {
+						mark: { show: true },
+						dataView: { show: true, readOnly: false },
+						magicType: { show: true, type: ['line', 'bar', 'stack'] },
+						restore: { show: true },
+						//saveAsImage: { show: true }
+						}
+					},
+					xAxis: [
+						{
+						type: 'category',
+						axisTick: { show: false },
+						data: nuklide
+						}
+					],
+					yAxis: [
+						{
+						type: 'value'
+						}
+					],
+					series: Object.values(s)
+					};
+		
+				option && myBarChart2.setOption(option);
+				
+			});//get url
+		});//nuk
+	});//lyr
+
+};
 
 
