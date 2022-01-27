@@ -136,7 +136,7 @@ function barChart(layers, start, end, nuclide, stat){
 					}
 				]
 				};
-	
+					
 			option && myBarChart.setOption(option);
 			
 		});
@@ -263,7 +263,7 @@ function radarChart(layer, start, end, nuclides, stat){
 
 				indicator = [];
 				for(ind in Object.keys(dicc)){
-					indicator.push({name:Object.keys(dicc)[ind], max:2000});
+					indicator.push({name:Object.keys(dicc)[ind], max:arr_max(Object.values(dicc))});
 				}
 		
 				option = {

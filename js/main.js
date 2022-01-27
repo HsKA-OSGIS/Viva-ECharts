@@ -4,7 +4,7 @@ let start;
 let end;
 let nuclide;
 let stat;
-var minuteSelect = document.querySelector('#minute');
+//var minuteSelect = document.querySelector('#minute');
 
 
 function showDivHome(){
@@ -63,7 +63,6 @@ function linkMenuEvents(){
 	document.getElementById("menu-about").addEventListener("click", changeActive);
 	document.getElementById("menu-help").addEventListener("click", changeActive1);
 	document.getElementById("menu-home").addEventListener("click", changeActive2);
-
 	document.getElementById("chartSelect").addEventListener("click", function(){
 		
 		chart = this.value;
@@ -142,10 +141,7 @@ function linkMenuEvents(){
 		addWMS(layer, end);
 
 		//Call examples to display charts
-		//gaugeChart("odl_brutto_1h", "2021-12-03T16:00:00.000Z","MAX");
-		//barChart(["nuklide_pilze","nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
-		//lineChart("odl_brutto_1h", "2021-12-03","MIN");
-
+		
 	});
 }
 
@@ -155,13 +151,18 @@ function mainInit(){
 	showDivHome();
 	linkMenuEvents();
 	mapMain();
-	setMinutesToZero()
+	////setMinutesToZero()
 	//Call example WMS for food
 	//addWMS("nuklide_pilze", '2020-12-20T10:00:00.000Z', '2021-12-14T10:00:00.000Z', 'K-40');
 
 	//Call example WMS for ODL
 	addWMS("odl_brutto_1h", '2022-01-26T09:00:00.000Z');
-	
+
+	gaugeChart("odl_brutto_1h", "2021-12-03T16:00:00.000Z","MAX");
+	barChart(["nuklide_pilze","nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
+	lineChart("odl_brutto_1h", "2021-12-03","MIN");
+	radarChart("nuklide_pilze","2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z",["Cs-137","Ce-144","K-40"],"MAX")
+	barChart2(["nuklide_pilze","nuklide_fleisch","nuklide_fisch"],"2021-01-12T00:00:00.000Z","2021-31-12T23:00:00.000Z",["Cs-137","Ce-144"],"MEAN");
 
     // function to close drop-down-menu when user clicks outside of it
     window.onclick = function(event) {
