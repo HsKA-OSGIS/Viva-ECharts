@@ -35,11 +35,25 @@ function changeActive2(){
 	var current = document.getElementById("menu-home");
 	current.className = current.className.replace("header","header active");
 }
+function openModal(){
+	console.log("Hola")
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		console.log("Hola 2")
+		var button = $(event.relatedTarget) // Button that triggered the modal
+		var recipient = button.data('whatever') // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this)
+		//modal.find('.modal-title').text('New message to ' + recipient)
+		modal.find('.modal-body input').val(recipient)
+	  })
+}
 
 function linkMenuEvents(){
 	document.getElementById("menu-about").addEventListener("click", showDivAbout);
 	document.getElementById("menu-help").addEventListener("click", showDivHelp);
 	document.getElementById("menu-home").addEventListener("click", showDivHome);
+	document.getElementById("btnPopup").addEventListener("click", openModal);
 	document.getElementById("menu-about").addEventListener("click", changeActive);
 	document.getElementById("menu-help").addEventListener("click", changeActive1);
 	document.getElementById("menu-home").addEventListener("click", changeActive2);

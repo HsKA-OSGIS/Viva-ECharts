@@ -258,6 +258,9 @@ function radarChart(layer, start, end, nuclides, stat){
 				}
 		
 				option = {
+					title: {
+						text: "Radar Chart"
+					},
 				  radar: {
 					indicator:indicator
 				  },
