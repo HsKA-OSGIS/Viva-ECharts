@@ -4,6 +4,8 @@ let start;
 let end;
 let nuclide;
 let stat;
+var minuteSelect = document.querySelector('#minute');
+
 
 function showDivHome(){
     libs_general_hideAllDivsInDivExceptOne("div-main", "div-home") 
@@ -48,7 +50,11 @@ function openModal(){
 		modal.find('.modal-body input').val(recipient)
 	  })
 }
-
+function setMinutesToZero() {
+	if(hourSelect.value === '18') {
+	  minuteSelect.value = '00';
+	}
+  }
 function linkMenuEvents(){
 	document.getElementById("menu-about").addEventListener("click", showDivAbout);
 	document.getElementById("menu-help").addEventListener("click", showDivHelp);
@@ -149,7 +155,7 @@ function mainInit(){
 	showDivHome();
 	linkMenuEvents();
 	mapMain();
-
+	setMinutesToZero()
 	//Call example WMS for food
 	//addWMS("nuklide_pilze", '2020-12-20T10:00:00.000Z', '2021-12-14T10:00:00.000Z', 'K-40');
 

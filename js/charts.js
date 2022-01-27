@@ -49,6 +49,9 @@ function gaugeChart(layer, end, stat){
 	var option;
 
 	option = {
+		title: {
+			text: "Gauge Chart"
+		},
 	tooltip: {
 		formatter: '{a} <br/>{b} : {c}%'
 		},
@@ -116,6 +119,9 @@ function barChart(layers, start, end, nuclide, stat){
 			}
 
 			option = {
+				title: {
+					text: "Bar Chart"
+				},
 				xAxis: {
 					type: 'category',
 					data: Object.keys(dicc)
@@ -189,6 +195,9 @@ function lineChart(layer, end, stat){
 				var sdicc = sortOnKeys(dicc);
 
 				option = {
+					title: {
+						text: "Line Chart"
+					},
 					xAxis: {
 					  type: 'category',
 					  boundaryGap: false,
