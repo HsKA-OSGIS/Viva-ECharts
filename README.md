@@ -41,9 +41,12 @@ Description how to use the widgets; wait until functionalities are implemented
 - Manuel Miñambres​
 - Javier Roig
 - Ana Sánchez
-- Jenny Unger  
+- Jenny Unger
+
+This project was developed within the scope of the master course "Geomatics", namely the course "Open Source GIS", at the University of Applied Sciences, Karlsruhe. In case one or all of the linked email addresses are out of commission, please refer to this master course at the faculty for Information Management and Media.Neither the University nor the students assume liability of correctness of this document and the absence of errors in this program.
 
 ## 5. Licenses
+This software makes use of various JavaScript libraries, which were released and/or maintained under one of the following licenses:
 - [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 - [FreeBSD License](https://www.freebsd.org/copyright/freebsd-license/)
 - [MIT License](https://opensource.org/licenses/MIT)
