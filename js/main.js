@@ -20,22 +20,22 @@ function changeActive(){
     current[0].className = current[0].className.replace(" active", "");
 	var current = document.getElementById("menu-about");
 	current.className = current.className.replace("header","header active");
-	console.log(current.className)
 }
+
 function changeActive1(){
 	var current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 	var current = document.getElementById("menu-help");
 	current.className = current.className.replace("header","header active");
-	console.log(current.className)
 }
+
 function changeActive2(){
 	var current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 	var current = document.getElementById("menu-home");
 	current.className = current.className.replace("header","header active");
-	console.log(current.className)
 }
+
 function linkMenuEvents(){
 	document.getElementById("menu-about").addEventListener("click", showDivAbout);
 	document.getElementById("menu-help").addEventListener("click", showDivHelp);
@@ -45,12 +45,39 @@ function linkMenuEvents(){
 	document.getElementById("menu-home").addEventListener("click", changeActive2);
 
 	document.getElementById("chartSelect").addEventListener("click", function(){
+		
 		chart = this.value;
-		//Here disable what is not needed anymore
+
+		if(chart === "barChart"){
+			document.getElementById("nuklideSelect").setAttribute("enabled","enabled");
+			document.getElementById("startDaySelect").setAttribute("enabled","enabled");
+			document.getElementById("startHourSelect").setAttribute("enabled","enabled");
+			document.getElementById("endHourSelect").setAttribute("enabled","enabled");
+		}
+		
+		if(chart === "gaugeChart"){
+			document.getElementById("endDaySelect").setAttribute("enabled","enabled");
+			document.getElementById("endHourSelect").setAttribute("enabled","enabled");
+			document.getElementById("nuklideSelect").setAttribute("disabled","disabled");
+			document.getElementById("startDaySelect").setAttribute("disabled","disabled");
+			document.getElementById("startHourSelect").setAttribute("disabled","disabled");
+		}
+		
+		if(chart === "lineChart"){
+			document.getElementById("nuklideSelect").setAttribute("disabled","disabled");
+			document.getElementById("startDaySelect").setAttribute("disabled","disabled");
+			document.getElementById("startHourSelect").setAttribute("disabled","disabled");
+			document.getElementById("endHourSelect").setAttribute("disabled","disabled");
+		}
+
 	});
 
 	document.getElementById("statSelect").addEventListener("click", function(){
 		stat = this.value;
+	})
+
+	document.getElementById("nuklideSelect").addEventListener("click", function(){
+		nuclide = this.value;
 	})
 
 	document.getElementById("btnVisualize").addEventListener("click", function(){
@@ -68,6 +95,13 @@ function linkMenuEvents(){
 
 
 		if(chart === "barChart"){
+
+			var layers = Array.prototype.slice.call(document.querySelectorAll('#layerSelect option:checked'),0).map(function(v,i,a) { 
+				return v.value; 
+			});
+
+			console.log(layers);
+
 			barChart(layers, start, end, nuclide, stat);
 		}
 		if(chart === "lineChart"){
