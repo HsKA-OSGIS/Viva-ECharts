@@ -164,6 +164,7 @@ function lineChart(layer, start, end, nuclide, stat){
 		var values = [];
 
 		$.get(url).done(function(data){
+			
 
 			var features = data.features;
 
@@ -211,113 +212,287 @@ function lineChart(layer, start, end, nuclide, stat){
 	});
 }
 
+function lineChart2(layer, start, end, nuclide, stat){
 
-function racelineChart(layer, start, end, nuclide, stat){
-
-	var myraceLineChart = echarts.init(document.getElementById('chart4'));
+	var myLineChart2 = echarts.init(document.getElementById('chart4'));
 	var option;
 
-	var dicc0= [];
-	var months = [];
+	var dicc = {};
+	var dicc1 = {};
+	var days = [];
+	var s = [];
 
-	for(var month = 0; month<12; month++){
-		if(month< 10){
-			month= '0' + month;
+	for(var day = 0; day<31; day++){
+
+		if(day < 10){
+			day = '0' + day;
 		}
-		months.push(month);
+		days.push(day);
 	}
-
-	layer.forEach(lyr=>{
-		var dicc1 = {};
-		months.forEach(month=>{
-			start="2020-"+month+"-01T00:00:00.000Z"
-			end="2020-"+month+"-31T00:00:00.000Z"
-			url = URLBuilder(layer, start, end, nuclide)
+	nuclide.forEach(nuk=>{
+		days.forEach(day=>{
+			date=end+"-"+toString(day);
+			url = URLBuilder(layer, date, nuclide)
 			var values = [];
 
 			$.get(url).done(function(data){
-
+				console.log(url);				
+				if (!(nuk in dicc)){
+					dicc[nuk]={};
+					dicc1[nuk]={};
+				};
+				if (!(day in dicc[nuk])){
+					dicc[nuk][day]=[];
+				};
+				//console.log(dicc);
+				//console.log(dicc1);
 				var features = data.features;
-
 				for(feat in features){
-					values.push(features[feat].properties.value);
+					dicc[nuk][day].push(features[feat].properties.value);
 				}
-
+				
 				if(stat === "MEAN"){			
-					var mean = avg(values);
-					dicc1[month] = mean;
+					var mean = avg(dicc[nuk][day]);
+					dicc1[nuk][day] = mean;
 				}
 
 				if(stat === "MAX"){
-					var max = arr_max(values);
-					dicc1[month] = max;
+					var max = arr_max(dicc[nuk][day]);
+					dicc1[nuk][day] = max;
 				}
 
 				if(stat === "MIN"){
-					var min = arr_min(values);
-					dicc1[month] = min;
+					var min = arr_min(dicc[nuk][day]);
+					dicc1[nuk][day] = min;
+				}
+
+				s[nuk]={
+					name: nuk,
+					type: 'line',
+					data: Object.values(dicc1[nuk])
+				};
+
+				option = {
+					xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: days
+					},
+					legend: {
+						data: nuclide
+					},
+					yAxis: {
+					type: 'value'
+					},
+					series: s
+				};
+
+				option && myLineChart2.setOption(option);
+
+			});//get url
+		});//days
+	});//nuclide
+}
+/*
+function lineChart2(layer, start,end, nuclide, stat){
+
+	var myraceLineChart = echarts.init(document.getElementById('chart4'));
+	var option;
+		
+	var dicc = {};
+	var dicc1 = {};
+	var s = {};
+	var months = [];
+
+	for(var month = 1; month<12; month++){
+		if(month< 10){
+			month='0' + month;
+			
+		};
+		months.push(month);
+	};
+
+	layer.forEach(lyr=>{
+		
+		months.forEach(month=>{
+			
+			start_date=end+"-01-01";
+			end_date=end+"-"+month+"-"+"31";
+			url = URLBuilder(layer, start_date,end_date, nuclide)
+			var values = [];
+			try{
+				//console.log('try');
+				$.get(url).done(function(data){
+					console.log(url);
+					//console.log(lyr," ",month);
+
+					if (!(lyr in dicc)){
+						dicc[lyr]={};
+						dicc1[lyr]={};
+					};
+					if (!(month in dicc[lyr])){
+						dicc[lyr][month]=[];
+					};
+					//console.log(dicc);
+					//console.log(dicc1);
+					var features = data.features;
+	
+					for(feat in features){
+						dicc[lyr][month].push(features[feat].properties.value);
+					}
+									
+					if(stat === "MEAN"){			
+						var mean = avg(dicc[lyr][month]);
+						dicc1[lyr][month] = mean;
+					}
+	
+					if(stat === "MAX"){
+						var max = arr_max(dicc[lyr][month]);
+						dicc1[lyr][month] = max;
+					}
+	
+					if(stat === "MIN"){
+						var min = arr_min(dicc[lyr][month]);
+						dicc1[lyr][month] = min;
+					}
+					
+					s[lyr]={
+						name: lyr,
+						type: 'line',
+						stack: 'Total',
+						data: Object.values(dicc1[lyr])
+					  }		
+					
+					option = {
+						title: {
+							text: 'Cs-137 in Food'
+						},
+						tooltip: {
+							trigger: 'axis'
+						},
+						legend: {
+							data: layers
+						},
+						grid: {
+							left: '3%',
+							right: '4%',
+							bottom: '3%',
+							containLabel: true
+						},
+						xAxis: {
+							type: 'category',
+							boundaryGap: false,
+							//data: [Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec]
+							data: months
+						},
+						yAxis: {
+							type: 'value'
+						},
+						series: Object.values(s)
+					};//option			
+				});//get url
+				}catch{(console.log('error with url'))};
+		});//month
+	});//layer	
+		option && myraceLineChart.setOption(option);		
+};
+*/
+
+function barChart2(layers, start, end, nuklide, stat){
+	
+	var myBarChart2 = echarts.init(document.getElementById('chart5'));
+	var option;
+
+	var dicc = {};
+	var dicc1 = {};
+	var s = {};
+
+	layers.forEach(lyr => {
+		nuklide.forEach(nuk => {
+			url = URLBuilder(lyr, start, end, nuk)			
+			$.get(url).done(function (data) {
+				
+				if (!(lyr in dicc)){
+					dicc[lyr]={};
+					dicc1[lyr]={};
+				};
+				if (!(nuk in dicc[lyr])){
+					dicc[lyr][nuk]=[];
+				};
+				//console.log(dicc);
+				//console.log(dicc1);
+				var features = data.features;
+				for(feat in features){
+					dicc[lyr][nuk].push(features[feat].properties.value);
 				}
 				
-			});//get url
-		});//month
-		dicc1['lyr'] = lyr;
-		dicc0.push(dicc1);
-		//dicc0[lyr] = dicc1;;
-	});//layer
-	
-	var legend_data=[];
-	var series1=[];
-	dicc0.forEach(d=>{
-		legend_data.push(d.name);
-		s={
-			name:d.name,
-			type:'line',
-			stack:'Total',
-			data: Object.values(d)
-		};
-		series1.push(s);
-	});
-	console.log(legend_data);
-	console.log(series1);
+				if(stat === "MEAN"){			
+					var mean = avg(dicc[lyr][nuk]);
+					dicc1[lyr][nuk] = mean;
+				}
 
-	option = {
-		title: {
-			text: 'Cs-137 in Food'
-		},
-		tooltip: {
-			trigger: 'axis'
-		},
-		legend: {
-			data: Object.keys(dicc0)
-		},
-		grid: {
-			left: '3%',
-			right: '4%',
-			bottom: '3%',
-			containLabel: true
-		},
-		xAxis: {
-			type: 'category',
-			boundaryGap: false,
-			data: [Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec]
-		},
-		yAxis: {
-			type: 'value'
-		},
-		series: series1
-		/*series: [
-			{
-			name: 'Email',
-			type: 'line',
-			stack: 'Total',
-			data: [120, 132, 101, 134, 90, 230, 210]
-			}
-		]*/
-		};
+				if(stat === "MAX"){
+					var max = arr_max(dicc[lyr][nuk]);
+					dicc1[lyr][nuk] = max;
+				}
+
+				if(stat === "MIN"){
+					var min = arr_min(dicc[lyr][nuk]);
+					dicc1[lyr][nuk] = min;
+				}
+
+				s[lyr]={
+					name: lyr,
+					type: 'bar',
+					//label: labelOption,
+					emphasis: {
+					  focus: 'series'
+					},
+					data: Object.values(dicc1[lyr])
+				  }
 				
-		option && myraceLineChart.setOption(option);
-			
-}
+				option = {
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+						type: 'shadow'
+						}
+					},
+					legend: {
+						data: layers
+					},
+					toolbox: {
+						show: true,
+						orient: 'vertical',
+						left: 'right',
+						top: 'center',
+						feature: {
+						mark: { show: true },
+						dataView: { show: true, readOnly: false },
+						magicType: { show: true, type: ['line', 'bar', 'stack'] },
+						restore: { show: true },
+						//saveAsImage: { show: true }
+						}
+					},
+					xAxis: [
+						{
+						type: 'category',
+						axisTick: { show: false },
+						data: nuklide
+						}
+					],
+					yAxis: [
+						{
+						type: 'value'
+						}
+					],
+					series: Object.values(s)
+					};
+		
+				option && myBarChart2.setOption(option);
+				
+			});//get url
+		});//nuk
+	});//lyr
 
-
-
+};

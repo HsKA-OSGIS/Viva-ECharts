@@ -80,6 +80,6 @@ window.onload = function() {
 	gaugeChart("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null,"MEAN");
 	barChart(["nuklide_pilze","nuklide_fleisch"],"2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137","MAX");
 	lineChart("odl_brutto_1h", null, "2021-12-03", null,"MIN");
-	racelineChart(["nuklide_fisch","nuklide_fleisch"],"2021-01-01T00:00:00.000Z","2021-12-31T00:00:00.000Z","Cs-137","MAX");
-
+	lineChart2("new_gamma_aerosole_24h", null,"2021-12", ["Cs-137","Pb-214"],"MEAN");
+	barChart2(["nuklide_pilze","nuklide_fleisch","nuklide_fisch"],"2021-01-12T00:00:00.000Z","2021-31-12T23:00:00.000Z",["Cs-137","Ce-144"],"MEAN");
 };
