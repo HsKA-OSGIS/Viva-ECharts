@@ -39,14 +39,15 @@ In order to visualize certain values, you must go through the following steps:
   7. Select a stat (maximum, minimum, average)
   8. Click "Visualize"
 
+ ![](img/For_Readme.jpg)
  The widget showing the selected chart will be updated to match your request.
  You can return to this page at any time by clicking the "Home" button in the top right corner.
- ![](img/For_Readme.jpg)
+
 
 * ### About Us
 This page features flipcarts that you can provide with pictures and information regarding the people featured on this page. By default the profile pictures and university email adresses of the project participants of Viva-eCharts are listed.
 * ### Help
-This page provides further information about how to use this website. The text listed here is equivalent to chapter 3. and 4. of this Readme file.
+This page provides further information about how to use this website. The text listed here is equivalent to chapter 3. of this Readme file.
 
 ## 4. Credits
 - Dr. Marco Lechner
