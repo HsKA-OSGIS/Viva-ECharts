@@ -41,7 +41,7 @@ In order to visualize certain values, you must go through the following steps:
 
  The widget showing the selected chart will be updated to match your request.
  You can return to this page at any time by clicking the "Home" button in the top right corner.
- ![](img/For_Readme)
+ ![](img/For_Readme.jpg)
 
 * ### About Us
 This page features flipcarts that you can provide with pictures and information regarding the people featured on this page. By default the profile pictures and university email adresses of the project participants of Viva-eCharts are listed.
