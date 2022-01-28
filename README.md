@@ -10,7 +10,7 @@
 ## 1. Description
 
 * #### What is this project about?
-This software project features a radiological dashboard, based on the data and services provided by the Federal Office of Radiation Protection, Fribourg, Germany. The website uses the same web feature services provided by the Federal Office of Radiation Protection, Germany, featuring the measurements of various nucleids and the local gamma dose radiation rate throughout Germany. Those values can be requested and visualized in a variety of eCharts.
+This software project features a radiological dashboard, based on the data and services provided by the Federal Office of Radiation Protection, Fribourg, Germany. The website uses the same web feature services provided by the aforementioned institution, featuring the measurements of various nucleids and the local gamma dose radiation rate throughout Germany. Those values can be requested and visualized in a variety of eCharts.
 
 
 * #### Background
