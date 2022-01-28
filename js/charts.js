@@ -1,14 +1,11 @@
 //Example of retrieve features from a URL based on the layer, start, end and nuclide parameters
 url = URLBuilder("nuklide_pilze", "2020-12-08T13:00:00.000Z","2021-21-08T13:00:00.000Z","Cs-137")
 
-
 //Example for meat and K-40 and a different period of time
 url = URLBuilder("nuklide_fleisch", "2021-11-24T11:00:00.000Z","2021-12-14T11:00:00.000Z","K-40")
 
-
 //Example for air and and Cs-137
 url = URLBuilder("new_gamma_aerosole_24h", null,"2021-12-03T00:00:00.000Z","Cs-137");
-
 
 //Example example for gamma radiation (ODL)
 url = URLBuilder("odl_brutto_1h", null, "2021-12-03T16:00:00.000Z", null);
@@ -319,8 +316,7 @@ function barChart2(layers, start, end, nuklide, stat){
 				if (!(nuk in dicc[lyr])){
 					dicc[lyr][nuk]=[];
 				};
-				//console.log(dicc);
-				//console.log(dicc1);
+				
 				var features = data.features;
 				for(feat in features){
 					dicc[lyr][nuk].push(features[feat].properties.value);
@@ -344,7 +340,6 @@ function barChart2(layers, start, end, nuklide, stat){
 				s[lyr]={
 					name: lyr,
 					type: 'bar',
-					//label: labelOption,
 					emphasis: {
 					  focus: 'series'
 					},
@@ -370,8 +365,7 @@ function barChart2(layers, start, end, nuklide, stat){
 						mark: { show: true },
 						dataView: { show: true, readOnly: false },
 						magicType: { show: true, type: ['line', 'bar', 'stack'] },
-						restore: { show: true },
-						//saveAsImage: { show: true }
+						restore: { show: true }
 						}
 					},
 					xAxis: [
